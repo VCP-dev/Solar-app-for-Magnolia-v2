@@ -64,7 +64,7 @@
         android:text="Status currently unknown...."
         android:textSize="17dp"
         android:id="@+id/sysstatus"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="2dp"
@@ -110,7 +110,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/currentdate"
                         android:text="Details for Current date :"
                         android:textSize="15dp"
@@ -121,10 +121,10 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
                         android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -139,7 +139,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -151,7 +151,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproduced"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -179,7 +179,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -189,7 +189,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwp"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -219,7 +219,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/yesterdaydate"
                         android:text="Details for yesterday :"
                         android:textSize="15dp"
@@ -230,10 +230,10 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
                         android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -248,7 +248,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -260,7 +260,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproducedyesterday"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -288,7 +288,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -298,7 +298,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwpyesterday"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -328,7 +328,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/thismonth"
                         android:text="Details for this month :"
                         android:textSize="15dp"
@@ -339,10 +339,10 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
                         android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -357,7 +357,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -369,7 +369,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproducedthismonth"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -397,7 +397,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -407,7 +407,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwpthismonth"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -436,7 +436,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:id="@+id/lastmonth"
                         android:text="Details for last month :"
                         android:textSize="15dp"
@@ -447,10 +447,10 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
                         android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -465,7 +465,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -477,7 +477,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproducedlastmonth"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -505,7 +505,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -515,7 +515,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwplastmonth"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -546,7 +546,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="Details for this year :"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
@@ -556,10 +556,10 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
                         android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -574,7 +574,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -586,7 +586,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproducedthisyear"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -614,7 +614,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -624,7 +624,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwpthisyear"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -655,7 +655,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="Details for last year :"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
@@ -665,10 +665,10 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
                         android:padding="8dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -683,7 +683,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -695,7 +695,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproducedlastyear"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -723,7 +723,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -733,7 +733,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwplastyear"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -763,7 +763,7 @@
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
                         android:layout_marginBottom="2dp"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="5dp"
                         android:text="Details for lifetime of system :"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
@@ -773,11 +773,11 @@
                     <LinearLayout
 
                         android:orientation="horizontal"
-                        android:layout_marginTop="2dp"
-                        android:layout_marginLeft="5dp"
-                        android:layout_marginRight="5dp"
-                        android:layout_marginBottom="8dp"
-                        android:padding="8dp"
+
+                        android:layout_marginLeft="3dp"
+                        android:layout_marginRight="3dp"
+                        android:layout_marginBottom="5dp"
+                        android:padding="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -791,7 +791,7 @@
                             <TextView
                                 android:paddingLeft="3dp"
                                 android:layout_marginLeft="2dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
                                 android:text="Energy produced :"
@@ -803,7 +803,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/energyproducedlifetime"
                                 android:text="No data ....."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
@@ -831,7 +831,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:textColor="#000"
                                 android:textSize="14dp"
-                                android:layout_marginTop="10dp"
+                                android:layout_marginTop="5dp"
                                 android:text="Units/kWp produced:"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
@@ -841,7 +841,7 @@
                                 android:layout_marginLeft="2dp"
                                 android:id="@+id/unitsperkwplifetime"
                                 android:text="No data ...."
-                                android:layout_marginBottom="10dp"
+                                android:layout_marginBottom="5dp"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"/>
 
