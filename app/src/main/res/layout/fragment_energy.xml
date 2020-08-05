@@ -144,7 +144,7 @@
             <TextView
                 android:background="@drawable/textbackground"
                 android:id="@+id/totalpower"
-                android:padding="20dp"
+                android:padding="10dp"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:text="No data..."
@@ -154,7 +154,7 @@
 
             <TextView
                 android:id="@+id/barselectedY"
-                android:padding="20dp"
+                android:padding="10dp"
                 android:textColor="#000"
                 android:textStyle="bold"
                 android:text="No date selected"
@@ -175,20 +175,23 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:padding="13dp"
+                        android:paddingTop="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="1dp"
                         android:text="Power generated:"
                         android:textSize="18dp"
-                        android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/barselectedvalue"
-                        android:paddingLeft="13dp"
-                        android:paddingRight="13dp"
-                        android:paddingBottom="13dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="8dp"
                         android:text="No data..."
                         android:textSize="18dp"
+                        android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
@@ -211,20 +214,23 @@
                     android:layout_height="wrap_content">
 
                     <TextView
-                        android:padding="13dp"
+                        android:paddingTop="8dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="1dp"
                         android:text="Units/kWp:"
                         android:textSize="18dp"
-                        android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 
                     <TextView
                         android:id="@+id/barselectedavgvalue"
-                        android:paddingLeft="13dp"
-                        android:paddingRight="13dp"
-                        android:paddingBottom="13dp"
+                        android:paddingLeft="8dp"
+                        android:paddingRight="8dp"
+                        android:paddingBottom="8dp"
                         android:text="No data..."
                         android:textSize="18dp"
+                        android:textColor="#000"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"/>
 

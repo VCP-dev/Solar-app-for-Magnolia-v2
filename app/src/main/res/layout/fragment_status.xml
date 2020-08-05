@@ -109,8 +109,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:id="@+id/currentdate"
                         android:text="Details for Current date :"
                         android:textSize="15dp"
@@ -124,8 +124,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -218,8 +218,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:id="@+id/yesterdaydate"
                         android:text="Details for yesterday :"
                         android:textSize="15dp"
@@ -233,8 +233,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -327,8 +327,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:id="@+id/thismonth"
                         android:text="Details for this month :"
                         android:textSize="15dp"
@@ -342,8 +342,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -435,8 +435,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:id="@+id/lastmonth"
                         android:text="Details for last month :"
                         android:textSize="15dp"
@@ -450,8 +450,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -545,8 +545,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:text="Details for this year :"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
@@ -559,8 +559,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -654,8 +654,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:text="Details for last year :"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
@@ -668,8 +668,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="8dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
@@ -762,8 +762,8 @@
                         android:textStyle="bold"
                         android:layout_marginLeft="10dp"
                         android:layout_marginRight="5dp"
-                        android:layout_marginBottom="2dp"
-                        android:layout_marginTop="5dp"
+
+                        android:layout_marginTop="7dp"
                         android:text="Details for lifetime of system :"
                         android:textSize="15dp"
                         android:layout_width="match_parent"
@@ -776,8 +776,8 @@
 
                         android:layout_marginLeft="3dp"
                         android:layout_marginRight="3dp"
-                        android:layout_marginBottom="5dp"
-                        android:padding="5dp"
+                        android:layout_marginBottom="6dp"
+                        android:padding="6dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
