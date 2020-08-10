@@ -228,6 +228,25 @@ public class StatusFragment extends Fragment {
     }
 
 
+    public String returntoday()
+    {
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String curdate = dateFormat.format(calendar.getTime());
+        return curdate;
+    }
+
+
+    public String returnyesterday()
+    {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.DATE,-1);
+        dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String curdate = dateFormat.format(cal.getTime());
+        return curdate;
+    }
+
+
 
 
     @Override
@@ -328,8 +347,8 @@ public class StatusFragment extends Fragment {
 
         //currentdate.setText("Details for  "+date+" :");
         frontpagedetails.todayandyesterday(new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime()));
-        currentdate.setText("Details for "+frontpagedetails.today+":");
-        yesterdaydate.setText("Details for "+frontpagedetails.yesterday+":");
+        currentdate.setText("Details for "+returntoday()+":");
+        yesterdaydate.setText("Details for "+returnyesterday()+":");
         StoredValues.Todaysdate = new SimpleDateFormat("yyyy-MM-dd").format(Calendar.getInstance().getTime());
         StoredValues.Yesterdaysdate = frontpagedetails.yesterday;
 
@@ -349,58 +368,59 @@ public class StatusFragment extends Fragment {
             sysstatus.setTextColor(Color.parseColor("#2AE016"));
 
             energyproduced.setText(returnedvalueenergyproduced);
-            energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproduced.setTextColor(Color.parseColor("#000000"));               ///    for today
             unitsperkwp.setText(returnedvalueunitsperkwp);
-            unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            //unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwp.setTextColor(Color.parseColor("#000000"));
 
 
             energyproducedyesterday.setText(returnedenergyproducedyesterday);
-            energyproducedyesterday.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproducedyesterday.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproducedyesterday.setTextColor(Color.parseColor("#000000"));               ///    for yesterday
             unitsperkwpyesterday.setText(returnedunitsperkwpyesterday);
-            unitsperkwpyesterday.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwpyesterday.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwpyesterday.setTextColor(Color.parseColor("#000000"));
 
 
             energyproducedthismonth.setText(returnedenergyproducedthismonth);
-            energyproducedthismonth.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproducedthismonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproducedthismonth.setTextColor(Color.parseColor("#000000"));               ///    for this month
             unitsperkwpthismonth.setText(returnedunitsperkwpthismonth);
-            unitsperkwpthismonth.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwpthismonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwpthismonth.setTextColor(Color.parseColor("#000000"));
 
 
             energyproducedlastmonth.setText(returnedenergyproducedlastmonth);
-            energyproducedlastmonth.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproducedlastmonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproducedlastmonth.setTextColor(Color.parseColor("#000000"));               ///    for last month
             unitsperkwplastmonth.setText(returnedunitsperkwplastmonth);
-            unitsperkwplastmonth.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwplastmonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwplastmonth.setTextColor(Color.parseColor("#000000"));
 
 
             energyproducedthisyear.setText(returnedenergyproducedthisyear);
-            energyproducedthisyear.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproducedthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproducedthisyear.setTextColor(Color.parseColor("#000000"));                ///    this year
             unitsperkwpthisyear.setText(returnedunitsperkwpthisyear);
-            unitsperkwpthisyear.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwpthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwpthisyear.setTextColor(Color.parseColor("#000000"));
 
 
             energyproducedlastyear.setText(returnedenergyproducedlastyear);
-            energyproducedlastyear.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproducedlastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproducedlastyear.setTextColor(Color.parseColor("#000000"));                ///    last year
             unitsperkwplastyear.setText(returnedunitsperkwplastyear);
-            unitsperkwplastyear.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwplastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwplastyear.setTextColor(Color.parseColor("#000000"));
 
 
             energyproducedlifetime.setText(returnedenergyproducedlifetime);
-            energyproducedlifetime.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            energyproducedlifetime.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             energyproducedlifetime.setTextColor(Color.parseColor("#000000"));                ///    for lifetime
             unitsperkwplifetime.setText(returnedunitsperkwplifetime);
-            unitsperkwplifetime.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            unitsperkwplifetime.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
             unitsperkwplifetime.setTextColor(Color.parseColor("#000000"));
 
         }
@@ -606,9 +626,9 @@ public class StatusFragment extends Fragment {
 
                 energyproducedlifetime.setText(StoredValues.energyproducedliftime);
                 unitsperkwplifetime.setText(StoredValues.unitsperkwplifetime);
-                energyproducedlifetime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                energyproducedlifetime.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                 energyproducedlifetime.setTextColor(Color.parseColor("#000000"));
-                unitsperkwplifetime.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                unitsperkwplifetime.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                 unitsperkwplifetime.setTextColor(Color.parseColor("#000000"));
 
 
@@ -802,18 +822,18 @@ public class StatusFragment extends Fragment {
 
                     energyproducedthisyear.setText(StoredValues.energyproducedthisyear);
                     unitsperkwpthisyear.setText(StoredValues.unitsperkwpthisyear);
-                    energyproducedthisyear.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                    energyproducedthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                     energyproducedthisyear.setTextColor(Color.parseColor("#000000"));
-                    unitsperkwpthisyear.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                    unitsperkwpthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                     unitsperkwpthisyear.setTextColor(Color.parseColor("#000000"));
 
 
 
                     energyproducedlastyear.setText(StoredValues.energyproducedlastyear);
                     unitsperkwplastyear.setText(StoredValues.unitsperkwplastyear);
-                    energyproducedlastyear.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                    energyproducedlastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                     energyproducedlastyear.setTextColor(Color.parseColor("#000000"));
-                    unitsperkwplastyear.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                    unitsperkwplastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                     unitsperkwplastyear.setTextColor(Color.parseColor("#000000"));
 
 
@@ -1044,25 +1064,25 @@ public class StatusFragment extends Fragment {
 
                         energyproducedyesterday.setText(StoredValues.energyproducedyesterday);
                         unitsperkwpyesterday.setText(StoredValues.unitsperkwpyesterday);
-                        energyproducedyesterday.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                        energyproducedyesterday.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                         energyproducedyesterday.setTextColor(Color.parseColor("#000000"));
-                        unitsperkwpyesterday.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                        unitsperkwpyesterday.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                         unitsperkwpyesterday.setTextColor(Color.parseColor("#000000"));
 
 
                         energyproducedthismonth.setText(StoredValues.energyproducedthismonth);
                         unitsperkwpthismonth.setText(StoredValues.unitsperkwpthismonth);
-                        energyproducedthismonth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                        energyproducedthismonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                         energyproducedthismonth.setTextColor(Color.parseColor("#000000"));
-                        unitsperkwpthismonth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                        unitsperkwpthismonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                         unitsperkwpthismonth.setTextColor(Color.parseColor("#000000"));
 
 
                         energyproducedlastmonth.setText(StoredValues.energyproducedlastmonth);
                         unitsperkwplastmonth.setText(StoredValues.unitsperkwplastmonth);
-                        energyproducedlastmonth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                        energyproducedlastmonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                         energyproducedlastmonth.setTextColor(Color.parseColor("#000000"));
-                        unitsperkwplastmonth.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                        unitsperkwplastmonth.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                         unitsperkwplastmonth.setTextColor(Color.parseColor("#000000"));
 
 
@@ -1237,9 +1257,9 @@ public class StatusFragment extends Fragment {
                 unitsperkwp.setText(datalist.get(datalist.indexOf(avgvalue)));
                 StoredValues.unitsperkwptoday = datalist.get(datalist.indexOf(avgvalue));
 
-                energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_SP,17);
+                energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                 energyproduced.setTextColor(Color.parseColor("#000000"));
-                unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_SP,17);
+                unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                 unitsperkwp.setTextColor(Color.parseColor("#000000"));
 
             }
@@ -1322,9 +1342,9 @@ public class StatusFragment extends Fragment {
 
                 energyproduced.setText(StoredValues.energyproducedtoday);
                 unitsperkwp.setText(StoredValues.unitsperkwptoday);
-                energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                 energyproduced.setTextColor(Color.parseColor("#000000"));
-                unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_SP, 17);
+                unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
                 unitsperkwp.setTextColor(Color.parseColor("#000000"));
 
 

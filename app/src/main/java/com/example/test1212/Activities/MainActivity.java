@@ -40,13 +40,40 @@ public class MainActivity extends AppCompatActivity {
 
         MainActivityContext = getApplicationContext();
 
-        BottomNavigationView bottomnav = findViewById(R.id.bottom_navigation);
-        bottomnav.setOnNavigationItemSelectedListener(navListener);
+/*        BottomNavigationView bottomnav = findViewById(R.id.bottom_navigation);
+        bottomnav.setOnNavigationItemSelectedListener(navListener);*/
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containor,new StatusFragment(StoredValues.SystemStatus,StoredValues.energyproducedtoday,StoredValues.unitsperkwptoday,StoredValues.energyproducedyesterday,StoredValues.unitsperkwpyesterday,StoredValues.energyproducedthismonth, StoredValues.unitsperkwpthismonth,StoredValues.energyproducedlastmonth,StoredValues.unitsperkwplastmonth,StoredValues.energyproducedliftime,StoredValues.unitsperkwplifetime,StoredValues.energyproducedthisyear,StoredValues.unitsperkwpthisyear,StoredValues.energyproducedlastyear,StoredValues.unitsperkwplastyear)).commit();
+        //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containor,new StatusFragment(StoredValues.SystemStatus,StoredValues.energyproducedtoday,StoredValues.unitsperkwptoday,StoredValues.energyproducedyesterday,StoredValues.unitsperkwpyesterday,StoredValues.energyproducedthismonth, StoredValues.unitsperkwpthismonth,StoredValues.energyproducedlastmonth,StoredValues.unitsperkwplastmonth,StoredValues.energyproducedliftime,StoredValues.unitsperkwplifetime,StoredValues.energyproducedthisyear,StoredValues.unitsperkwpthisyear,StoredValues.energyproducedlastyear,StoredValues.unitsperkwplastyear)).commit();
 
+
+        String fragmenttype = getIntent().getStringExtra("fragmentname");
+        setfragment(fragmenttype);
 
     }
+
+
+    private void setfragment(String fragmenttype){
+
+        Fragment selectedfragment=null;
+
+        switch (fragmenttype){
+            case "status":
+                selectedfragment = new StatusFragment(StoredValues.SystemStatus,StoredValues.energyproducedtoday,StoredValues.unitsperkwptoday,StoredValues.energyproducedyesterday,StoredValues.unitsperkwpyesterday,StoredValues.energyproducedthismonth, StoredValues.unitsperkwpthismonth,StoredValues.energyproducedlastmonth,StoredValues.unitsperkwplastmonth,StoredValues.energyproducedliftime,StoredValues.unitsperkwplifetime,StoredValues.energyproducedthisyear,StoredValues.unitsperkwpthisyear,StoredValues.energyproducedlastyear,StoredValues.unitsperkwplastyear);
+                break;
+            case "energy":
+                selectedfragment = new EnergyFragment();
+                break;
+            case "details":
+                selectedfragment = new MenuFragment(StoredValues.systemname,StoredValues.systemID,StoredValues.systempublicname,StoredValues.timezone,StoredValues.country,StoredValues.state,StoredValues.city,StoredValues.Postalcode);
+                break;
+        }
+
+        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containor,selectedfragment).commit();
+
+    }
+
+
+
 
 
     private BottomNavigationView.OnNavigationItemSelectedListener navListener =
@@ -111,6 +138,8 @@ public class MainActivity extends AppCompatActivity {
         Toast.makeText(context,returnedvalue,Toast.LENGTH_SHORT);
         return returnedvalue;
     }
+
+
 
     public static String loadJSONFromAsset(Context context){
         String json;

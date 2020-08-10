@@ -11,8 +11,18 @@
         android:roundIcon="@drawable/solar_app_icon_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activities.AboutActivity"></activity>
         <activity
+            android:screenOrientation="portrait"
+            android:name=".Activities.NewMainActivity"
+            android:configChanges="orientation|screenSize|keyboardHidden"
+            android:label="Solar App for Magnolia"
+            android:launchMode="singleTask"
+            ></activity>
+        <activity
+            android:screenOrientation="portrait"
+            android:name=".Activities.AboutActivity" />
+        <activity
+            android:screenOrientation="portrait"
             android:name=".Activities.SplashScreenActivity"
             android:noHistory="true">
             <intent-filter>
@@ -21,11 +31,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+
         <activity
+            android:screenOrientation="portrait"
+            android:name=".Activities.MainActivity"
+             />
+
+
+        <!-- original manifest code-->
+        <!--<activity
             android:name=".Activities.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Solar App for Magnolia"
-            android:launchMode="singleTask"></activity>
+            android:launchMode="singleTask" />-->
+
     </application>
 
 </manifest>

@@ -49,7 +49,7 @@
         android:id="@+id/floatingupdatebutton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/abc_vector_test"
+        android:src="@drawable/refresh"
         android:contentDescription="update page"
         android:clickable="true"
         app:rippleColor="@color/colorPrimaryDark"
@@ -62,9 +62,9 @@
     <TextView
         android:layout_below="@id/statustoolbar"
         android:text="Status currently unknown...."
-        android:textSize="17dp"
+        android:textSize="16dp"
         android:id="@+id/sysstatus"
-        android:layout_marginTop="5dp"
+        android:layout_marginTop="3dp"
         android:layout_marginLeft="7dp"
         android:layout_marginRight="7dp"
         android:layout_marginBottom="2dp"
@@ -88,7 +88,7 @@
             <LinearLayout
                 android:background="#F0EFEF"
                 android:orientation="vertical"
-                android:paddingTop="10dp"
+                android:paddingTop="4dp"
                 android:paddingBottom="37dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -96,7 +96,11 @@
 
                 <!--first segment--><!--today-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -205,7 +209,11 @@
 
                 <!--second segment--><!--yesterday-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -314,7 +322,11 @@
 
                 <!--third segment--><!--this month-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -422,7 +434,11 @@
 
                 <!--fourth segment--><!--last month-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -532,7 +548,11 @@
 
                 <!--fifth segment--><!--this year-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -641,7 +661,11 @@
 
                 <!--sixth segment--><!--last year-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"
@@ -749,7 +773,11 @@
 
                 <!--seventh segment--><!--lifetime-->
                 <LinearLayout
-                    android:layout_margin="4dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="2dp"
+                    android:layout_marginLeft="4dp"
+                    android:layout_marginRight="4dp"
+
                     android:background="@drawable/textbackground"
                     android:orientation="vertical"
                     android:layout_width="match_parent"

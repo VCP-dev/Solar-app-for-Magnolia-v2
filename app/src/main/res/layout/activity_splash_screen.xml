@@ -9,6 +9,7 @@
     tools:context=".Activities.SplashScreenActivity">
 
     <ImageView
+        android:id="@+id/appiconsplash"
         android:paddingTop="110dp"
         android:src="@drawable/solar_app_icon_new"
         android:layout_weight="0.6"
