@@ -28,11 +28,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 
-import com.example.test1212.AboutActivity;
+import com.example.test1212.Activities.AboutActivity;
 import com.example.test1212.BarChartOperations.frontpagedetails;
 import com.example.test1212.BarChartOperations.yearlydetails;
-import com.example.test1212.MainActivity;
-import com.example.test1212.RequestedValues.LifetimeValues;
+import com.example.test1212.Activities.MainActivity;
 import com.example.test1212.RequestedValues.PostData;
 import com.example.test1212.R;
 import com.example.test1212.RequestedValues.WeeklyValues;

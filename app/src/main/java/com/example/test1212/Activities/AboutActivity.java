@@ -1,8 +1,10 @@
-package com.example.test1212;
+package com.example.test1212.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.example.test1212.R;
 
 public class AboutActivity extends AppCompatActivity {
 

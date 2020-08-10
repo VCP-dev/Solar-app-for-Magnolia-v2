@@ -1,10 +1,12 @@
-package com.example.test1212;
+package com.example.test1212.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.test1212.R;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -19,7 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent Main = new Intent(SplashScreenActivity.this,MainActivity.class);
+                Intent Main = new Intent(SplashScreenActivity.this, MainActivity.class);
                 startActivity(Main);
             }
         },SPLASH_TIME_OUT);

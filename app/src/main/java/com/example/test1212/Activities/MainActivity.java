@@ -1,4 +1,4 @@
-package com.example.test1212;
+package com.example.test1212.Activities;
 
 import androidx.annotation.NonNull;
 //import androidx.appcompat.app.ActionBar;
@@ -14,6 +14,8 @@ import android.widget.Toast;
 import com.example.test1212.Fragments.EnergyFragment;
 import com.example.test1212.Fragments.MenuFragment;
 import com.example.test1212.Fragments.StatusFragment;
+import com.example.test1212.R;
+import com.example.test1212.StoredValues;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import org.json.JSONException;

@@ -11,9 +11,9 @@
         android:roundIcon="@drawable/solar_app_icon_new"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".AboutActivity"></activity>
+        <activity android:name=".Activities.AboutActivity"></activity>
         <activity
-            android:name=".SplashScreenActivity"
+            android:name=".Activities.SplashScreenActivity"
             android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".Activities.MainActivity"
             android:configChanges="orientation|screenSize|keyboardHidden"
             android:label="Solar App for Magnolia"
             android:launchMode="singleTask"></activity>
