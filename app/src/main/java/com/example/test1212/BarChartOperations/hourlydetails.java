@@ -1,12 +1,15 @@
 package com.example.test1212.BarChartOperations;
 
 import android.os.Build;
+import android.util.Log;
 
 import androidx.annotation.RequiresApi;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.Instant;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.ArrayList;
 
@@ -23,7 +26,8 @@ public class hourlydetails {
     public static ArrayList<String> hoursofdayiso8601(String day)
     {
         ArrayList<String> hours= new ArrayList<String>();
-        for(int i=0;i<=24;i++)
+        int maxhour=returnmaxhour(day);
+        for(int i=0;i<=maxhour;i++)
         {
             try {
                 String hour = hournum(i);
@@ -43,7 +47,8 @@ public class hourlydetails {
     public static ArrayList<String> hoursofdayepoch(String day)
     {
         ArrayList<String> hours= new ArrayList<String>();
-        for(int i=0;i<=24;i++)
+        int maxhour=returnmaxhour(day);
+        for(int i=0;i<=maxhour;i++)
         {
             try {
                 String hour = hournum(i);
@@ -63,7 +68,8 @@ public class hourlydetails {
     public static ArrayList<String> hoursofdayepochfivemindiff(String day)
     {
         ArrayList<String> hours= new ArrayList<String>();
-        for(int i=0;i<=24;i++)
+        int maxhour=returnmaxhour(day);
+        for(int i=0;i<=maxhour;i++)
         {
             try {
                 String hour = hournum(i);
@@ -90,6 +96,7 @@ public class hourlydetails {
                 System.out.println(ex.getCause());
             }
         }
+        Log.println(Log.DEBUG,"hours of day",hours.toString());
         return hours;
     }
 
@@ -98,7 +105,8 @@ public class hourlydetails {
     public static ArrayList<String> hoursofdayiso8601fivemindiff(String day)
     {
         ArrayList<String> hours= new ArrayList<String>();
-        for(int i=0;i<=24;i++)
+        int maxhour=returnmaxhour(day);
+        for(int i=0;i<=maxhour;i++)
         {
             try
             {
@@ -151,6 +159,27 @@ public class hourlydetails {
             return 0;
         }
 
+    }
+
+
+    public static String returncurrentdate()
+    {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String curdate = dateFormat.format(calendar.getTime());
+        return curdate;
+    }
+
+
+    public static int returnmaxhour(String day)
+    {
+        if(day==returncurrentdate()){
+            Calendar cal = Calendar.getInstance();
+            return cal.get(Calendar.HOUR_OF_DAY);
+        }
+        else{
+            return 24;
+        }
     }
 
 }

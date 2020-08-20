@@ -58,12 +58,18 @@ public class SolarApi {
 
     public interface PostService
     {
+
+        @GET("systems/{system_id}/stats")
+        Call<HourlyValues> getValuesOfEachHourToday(@Path(value = "system_id") String systemid, @Query("datetime_format") String format, @Query("user_id") String user_id, @Query("key") String apikey);
+
+
         @GET("systems/{system_id}/stats")
         Call<HourlyValues> getValuesOfEachHour(@Path(value = "system_id") String systemid, @Query("start_at") String starttime, @Query("end_at") String endtime, @Query("datetime_format") String format, @Query("user_id") String user_id, @Query("key") String apikey);
 
 
         @GET("systems")  //?key="+apikey+"&user_id="+user_id)
         Call<PostData> getPostData(@Query("key") String apikey,@Query("user_id") String user_id);
+
 
         @GET("systems/{system_id}/summary")  //@GET("systems/"+system_id+"/summary")
         Call<SummaryOfDay> getSummaryOfToday(@Path(value = "system_id") String systemid, @Query("summary_date") String curdate, @Query("key") String apikey, @Query("user_id") String user_id);

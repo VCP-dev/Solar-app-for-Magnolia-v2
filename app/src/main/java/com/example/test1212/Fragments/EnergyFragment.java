@@ -600,17 +600,29 @@ public class EnergyFragment extends Fragment {
             endtime = selecteddayhours.get(selecteddayhours.size() - 1);
             //}
             //Toast.makeText(getContext(), "starttime: " + starttime + " || endtime: " + endtime, Toast.LENGTH_LONG).show();
-            getHourlyValues(getContext(), description, starttime, endtime);
+            getHourlyValues(getContext(), description, starttime, endtime,date);
 
         //Toast.makeText(getContext(),"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
     }
 
 
-    private void getHourlyValues(final Context context, String description, final String starttime, final String endtime)
+    private void getHourlyValues(final Context context, String description, final String starttime, final String endtime,String date)
     {
         Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         //Toast.makeText(getContext(), "starttime: " + starttime + " || endtime: " + endtime, Toast.LENGTH_LONG).show();
-        Call<HourlyValues> hourlyValues = SolarApi.getService().getValuesOfEachHour(MainActivity.returnapivalue("system_id",context),starttime,endtime,"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
+
+        Call<HourlyValues> hourlyValues;
+
+        String today = returncurrentdate();
+        if(date.equals(today)){
+            hourlyValues = SolarApi.getService().getValuesOfEachHourToday(MainActivity.returnapivalue("system_id",context),"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
+        }
+        else{
+            hourlyValues = SolarApi.getService().getValuesOfEachHour(MainActivity.returnapivalue("system_id",context),starttime,endtime,"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
+        }
+
+
+        //Call<HourlyValues> hourlyValues = SolarApi.getService().getValuesOfEachHour(MainActivity.returnapivalue("system_id",context),starttime,endtime,"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
         final String descr = description;
         hourlyValues.enqueue(new Callback<HourlyValues>() {
             @Override
