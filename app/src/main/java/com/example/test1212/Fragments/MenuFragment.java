@@ -112,7 +112,7 @@ public class MenuFragment extends Fragment {
 
     private void getdata(final Context context)                  //////  for general details
     {
-        Call<PostData> postData = SolarApi.getService().getPostData(MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        Call<PostData> postData = SolarApi.getService(context).getPostData(MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         postData.enqueue(new Callback<PostData>() {
             @Override
             public void onResponse(Call<PostData> call, Response<PostData> response) {

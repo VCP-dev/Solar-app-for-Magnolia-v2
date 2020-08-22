@@ -615,10 +615,10 @@ public class EnergyFragment extends Fragment {
 
         String today = returncurrentdate();
         if(date.equals(today)){
-            hourlyValues = SolarApi.getService().getValuesOfEachHourToday(MainActivity.returnapivalue("system_id",context),"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
+            hourlyValues = SolarApi.getService(context).getValuesOfEachHourToday(MainActivity.returnapivalue("system_id",context),"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
         }
         else{
-            hourlyValues = SolarApi.getService().getValuesOfEachHour(MainActivity.returnapivalue("system_id",context),starttime,endtime,"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
+            hourlyValues = SolarApi.getService(context).getValuesOfEachHour(MainActivity.returnapivalue("system_id",context),starttime,endtime,"iso8601",MainActivity.returnapivalue("user_id",context),MainActivity.returnapivalue("apikey",context));
         }
 
 
@@ -762,7 +762,7 @@ public class EnergyFragment extends Fragment {
     private void getWeeklyValues(final Context context, String description, final String startdate, final String enddate)
     {
         Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
-        Call<WeeklyValues> weeklyValues = SolarApi.getService().getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        Call<WeeklyValues> weeklyValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         final String descr = description;
         weeklyValues.enqueue(new Callback<WeeklyValues>() {
             @Override
@@ -836,6 +836,8 @@ public class EnergyFragment extends Fragment {
 
 
 
+
+
     ///   --------------------------------   monthly bar graph functions   --------------------------------
 
 
@@ -860,7 +862,7 @@ public class EnergyFragment extends Fragment {
     public void getMonthlyValues(final Context context, final String description, final String startdate, final String enddate)
     {
         Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
-        final Call<WeeklyValues> monthlyValues = SolarApi.getService().getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        final Call<WeeklyValues> monthlyValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         final String descr = description;
 
         monthlyValues.enqueue(new Callback<WeeklyValues>() {
@@ -974,7 +976,7 @@ public class EnergyFragment extends Fragment {
     public void getyearlyvalues(final Context context, final String description, final String startdate, final String enddate, final ArrayList<String> yeardates)
     {
         Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
-        final Call<WeeklyValues> yearlyValues = SolarApi.getService().getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        final Call<WeeklyValues> yearlyValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         final String descr = description;
 
         yearlyValues.enqueue(new Callback<WeeklyValues>() {
@@ -1264,7 +1266,7 @@ public class EnergyFragment extends Fragment {
     private void power_for_day(final Context context,String date)               //////   for whatever day is passed
     {
 
-        Call<SummaryOfDay> summaryOfDay = SolarApi.getService().getSummaryOfToday(MainActivity.returnapivalue("system_id",context),date,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        Call<SummaryOfDay> summaryOfDay = SolarApi.getService(context).getSummaryOfToday(MainActivity.returnapivalue("system_id",context),date,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         summaryOfDay.enqueue(new Callback<SummaryOfDay>() {
             @Override
             public void onResponse(Call<SummaryOfDay> call, Response<SummaryOfDay> response) {
@@ -1350,7 +1352,7 @@ public class EnergyFragment extends Fragment {
     private void for_this_month(final Context context,final ArrayList<String> daysOfMonth,final List<Integer> valuesofweek,final String descr)
     {
         //Snackbar.make(getView(),"Updating page with latest data....",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
-        Call<SummaryOfDay> summaryOfDay = SolarApi.getService().getSummaryOfToday(MainActivity.returnapivalue("system_id",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        Call<SummaryOfDay> summaryOfDay = SolarApi.getService(context).getSummaryOfToday(MainActivity.returnapivalue("system_id",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         summaryOfDay.enqueue(new Callback<SummaryOfDay>() {
             @Override
             public void onResponse(Call<SummaryOfDay> call, Response<SummaryOfDay> response) {
@@ -1407,7 +1409,7 @@ public class EnergyFragment extends Fragment {
     private void for_this_year(final int indextoaddtodays,final ArrayList<String> yeardates,final Context context, final ArrayList<String> months, final String descr, final int startindex, final List<Integer> Valuesforgivenyear, final ArrayList<Float> Valuesforeachmonth)
     {
         //Snackbar.make(getView(),"Updating page with latest data....",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
-        Call<SummaryOfDay> summaryOfDay = SolarApi.getService().getSummaryOfToday(MainActivity.returnapivalue("system_id",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        Call<SummaryOfDay> summaryOfDay = SolarApi.getService(context).getSummaryOfToday(MainActivity.returnapivalue("system_id",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         summaryOfDay.enqueue(new Callback<SummaryOfDay>() {
             @Override
             public void onResponse(Call<SummaryOfDay> call, Response<SummaryOfDay> response) {

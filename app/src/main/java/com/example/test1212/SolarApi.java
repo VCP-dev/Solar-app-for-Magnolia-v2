@@ -2,12 +2,14 @@ package com.example.test1212;
 
 
 
-import com.example.test1212.Activities.MainActivity;
+import android.content.Context;
+
 import com.example.test1212.RequestedValues.HourlyValues;
 import com.example.test1212.RequestedValues.LifetimeValues;
 import com.example.test1212.RequestedValues.PostData;
 import com.example.test1212.RequestedValues.SummaryOfDay;
 import com.example.test1212.RequestedValues.WeeklyValues;
+import com.example.test1212.UtilityClasses.JSONparserclass;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -35,13 +37,14 @@ public class SolarApi {
 
     public static PostService postService = null;
 
-    public static PostService getService()
+    public static PostService getService(Context context)
     {
         if(postService == null)
         {
+            JSONparserclass parser = new JSONparserclass();
 
             Retrofit retrofit = new Retrofit.Builder()
-                    .baseUrl(MainActivity.returnapivalue("url",MainActivity.MainActivityContext))//(url)
+                    .baseUrl(parser.returnapivalue("url",context))//(url)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
