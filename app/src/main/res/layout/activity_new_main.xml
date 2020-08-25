@@ -35,11 +35,11 @@
 
                 android:id="@+id/todaygraphcard"
 
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                app:cardCornerRadius="9dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
@@ -65,11 +65,11 @@
 
                 android:id="@+id/thismonthgraphcard"
 
-                app:cardCornerRadius="15dp"
-                android:layout_marginTop="50dp"
-                android:layout_marginBottom="30dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                app:cardCornerRadius="9dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
@@ -103,11 +103,11 @@
 
                 android:id="@+id/thisyeargraphcard"
 
-                app:cardCornerRadius="15dp"
+                app:cardCornerRadius="9dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
@@ -133,14 +133,259 @@
 
                 android:id="@+id/statuspagecard"
 
-                app:cardCornerRadius="15dp"
+                app:cardCornerRadius="9dp"
                 android:layout_marginTop="40dp"
-                android:layout_marginBottom="40dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginBottom="20dp"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
                 android:layout_weight="0.5"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <!-- card with label texts -->
+                    <LinearLayout
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="0.3"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:layout_gravity="center_vertical"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="today"
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="yesterday"
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="this month"
+                            android:textSize="13dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="last month"
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="this year"
+                            android:textSize="13dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="last year"
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="lifetime"
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                    </LinearLayout>
+
+                    <!-- card with energy texts -->
+
+                    <LinearLayout
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="0.35"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/todayenergy"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/yesterdayenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/thismonthenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="13dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/lastmonthenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/thisyearenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="13dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/lastyearenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/lifetimeenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                    </LinearLayout>
+
+                    <!-- card with unit pkwp texts -->
+
+                    <LinearLayout
+                        android:layout_marginTop="3dp"
+                        android:layout_weight="0.35"
+                        android:orientation="vertical"
+                        android:layout_width="0dp"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/todayunitperkwp"
+                            android:layout_gravity="center_vertical"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/yesterdayunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/thismonthunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="13dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/lastmonthunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/thisyearunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="13dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/lastyearunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                        <TextView
+                            android:id="@+id/lifetimeunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>
+
+                    </LinearLayout>
+
+                </LinearLayout>
 
             </androidx.cardview.widget.CardView>
 

@@ -77,6 +77,25 @@ public class NewMainActivity extends AppCompatActivity {
     ArrayList<BarEntry> barEntries;
 
 
+
+
+    // --------------------------------- for status card ---------------------------------
+
+    TextView todayenergy,todayunitperkwp;
+    TextView yesterdayenergy,yesterdayunitperkwp;
+    TextView thismonthenergy,thismonthunitperkwp;
+    TextView lastmonthenergy,lastmonthunitperkwp;
+    TextView thisyearenergy,thisyearunitperkwp;
+    TextView lastyearenergy,lastyearunitperkwp;
+    TextView lifetimeenergy,lifetimeunitperkwp;
+
+    // --------------------------------- for status card ---------------------------------
+
+
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -89,6 +108,29 @@ public class NewMainActivity extends AppCompatActivity {
         hourlygraph = findViewById(R.id.hourlygraph);
         monthlygraph = findViewById(R.id.monthlygraph);
         yearlygraph = findViewById(R.id.yearlygraph);
+
+
+        // --------------------------------- for status card ---------------------------------
+
+        todayenergy = findViewById(R.id.todayenergy);                    // today
+        todayunitperkwp = findViewById(R.id.todayunitperkwp);
+        yesterdayenergy = findViewById(R.id.yesterdayenergy);            // yesterday
+        yesterdayunitperkwp = findViewById(R.id.yesterdayunitperkwp);
+        thismonthenergy = findViewById(R.id.thismonthenergy);            // this month
+        thismonthunitperkwp = findViewById(R.id.thismonthunitperkwp);
+        lastmonthenergy = findViewById(R.id.lastmonthenergy);            // last month
+        lastmonthunitperkwp = findViewById(R.id.lastmonthunitperkwp);
+        thisyearenergy = findViewById(R.id.thisyearenergy);              // this year
+        thisyearunitperkwp = findViewById(R.id.thisyearunitperkwp);
+        lastyearenergy = findViewById(R.id.lastyearenergy);              // last year
+        lastyearunitperkwp = findViewById(R.id.lastyearunitperkwp);
+        lifetimeenergy = findViewById(R.id.lifetimeenergy);              // lifetime
+        lifetimeunitperkwp = findViewById(R.id.lifetimeunitperkwp);
+
+
+        // --------------------------------- for status card ---------------------------------
+
+
 
 
         aboutbutton = findViewById(R.id.about_button_main);
@@ -114,43 +156,6 @@ public class NewMainActivity extends AppCompatActivity {
             }
         },delay_to_call);
         //createRandomBarGraph("10-10-2020","15-10-2020",hourlygraph,"Hourly");
-
-
-
-
-        /*
-
-        // for opening status fragment in main activity
-        statuscard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
-                intent.putExtra("fragmentname","status");
-                startActivity(intent);
-            }
-        });
-
-        // for opening energy fragment in main activity
-        energycard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
-                intent.putExtra("fragmentname","energy");
-                startActivity(intent);
-            }
-        });
-
-        // for opening details fragment in main activity
-        detailscard.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
-                intent.putExtra("fragmentname","details");
-                startActivity(intent);
-            }
-        });
-
-         */
 
 
     }
@@ -250,6 +255,15 @@ public class NewMainActivity extends AppCompatActivity {
 
                     Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
 
+                    String todaysvaluestring = ""+String.format("%.2f",hourlytotalvalue);                                           ////   energy produced today
+                    float todayavgvalue = hourlytotalvalue/49.7f;//todaysvalue / 49.7f;
+
+                    String todaysavgvaluestring = ""+String.format("%.2f",todayavgvalue);                                   ////   units per kwp today
+                    StoredValues.energyproducedtoday = todaysvaluestring;
+                    StoredValues.unitsperkwptoday = todaysavgvaluestring;
+
+                    todayenergy.setText(StoredValues.energyproducedtoday);
+                    todayunitperkwp.setText(StoredValues.unitsperkwptoday);
 
 
                     createyearlygraph("Yearly",yearlygraph);
@@ -257,12 +271,6 @@ public class NewMainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    /*
-                    Dialog dialog = new Dialog(NewMainActivity.this);
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.noresponsedialog_design);
-
-                    TextView noresponsetext = dialog.findViewById(R.id.noresponsetext);*/
                     Toast.makeText(context,"Error occured, Data does not exist for today",Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -272,13 +280,6 @@ public class NewMainActivity extends AppCompatActivity {
             public void onFailure(Call<HourlyValues> call, Throwable t) {
                 Toast.makeText(context,"Error occured, Could not get hourly values",Toast.LENGTH_SHORT).show();
                 //Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
-               /* Dialog dialog = new Dialog(NewMainActivity.this);
-                dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                dialog.setContentView(R.layout.noresponsedialog_design);
-
-                TextView noresponsetext = dialog.findViewById(R.id.noresponsetext);
-                noresponsetext.setText("Message:"+t.getMessage());
-                dialog.show();*/
             }
         });
     }
@@ -345,64 +346,11 @@ public class NewMainActivity extends AppCompatActivity {
                     for_this_month(barChart,context,daysOfMonth,valuesofweek,description);
 
 
-                    //}
-
-                    /*
-                    else{
-
-                        for (int j = 0; j < daysOfMonth.size(); j++) {
-                            try {
-                                float entryvalue = ((float) valuesofweek.get(j)) / 1000.0f;
-                                totalvalue += entryvalue;
-                                barEntries.add(new BarEntry(entryvalue, j));
-                            }
-                            catch(Exception e)
-                            {
-                                Log.println(Log.ASSERT,"Caught exception:",e.getMessage().toString());
-                            }
-                        }
-
-                        BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
-                        BarData barData = new BarData(daysOfMonth, barDataSet);
-                        barChart.setData(barData);
-                        barChart.setDescription(descr);
-                        barChart.fitScreen();
-
-
-
-                        /*
-                        for (int j = 0; j < daysOfMonth.size()-1; j++) {
-                            float entryvalue = ((float) valuesofweek.get(j)) / 1000.0f;
-                            totalvalue += entryvalue;
-                            barEntries.add(new BarEntry(entryvalue, j));
-                        }*/
-                 //   }
-
-                    /*
-                    BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
-                    BarData barData = new BarData(daysOfMonth, barDataSet);
-                    barChart.setData(barData);
-                    barChart.setDescription(descr);
-                    barChart.fitScreen();
-                    totalpower.setText("No data...");
-                    BarselectedY.setText("No date selected...");
-                    barselectedvalue.setText("No data...");
-                    Barselectedavgvalue.setText("No data...");
-
-                     */
 
                     Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
-                    /*
-                    Dialog dialog = new Dialog(getContext());
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.noresponsedialog_design);
-
-                    TextView noresponsetext = dialog.findViewById(R.id.noresponsetext);
-                    noresponsetext.setText("Data does not exist for selected month.....");
-                    dialog.show();*/
                     Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -444,13 +392,32 @@ public class NewMainActivity extends AppCompatActivity {
                 monthlytotalvalue += tk;
                 barEntries.add(new BarEntry(tk, j));
 
+                /*
                 String todaysvaluestring = tk + "." + tr;                                              ////   energy produced today
                 float todayavgvalue = todaysvalue / 49.7f;
                 int tka = (int) todayavgvalue / 1000;
                 int tra = (int) todayavgvalue % 1000;
                 String todaysavgvaluestring = tka + "." + tra;                                     ////   units per kwp today
                 StoredValues.energyproducedtoday = todaysvaluestring;
-                StoredValues.unitsperkwptoday = todaysavgvaluestring;
+                StoredValues.unitsperkwptoday = todaysavgvaluestring;*/
+
+
+                float yesterdaysvalue = (valuesofweek.get(valuesofweek.size()-1))/1000;                      ////   energy produced yesterday
+                StoredValues.energyproducedyesterday = String.format("%.2f",yesterdaysvalue);
+                float yesterdaysavgvalue = (yesterdaysvalue/49.7f);                                   ////   units per kwp yesterday
+                StoredValues.unitsperkwpyesterday = String.format("%.2f",yesterdaysavgvalue);
+
+                yesterdayenergy.setText(StoredValues.energyproducedyesterday);
+                yesterdayunitperkwp.setText(StoredValues.unitsperkwpyesterday);
+
+
+                //String thismonthvaluevaluestring = tk + "." + tr;                                              ////   energy produced this month
+                float thismonthavgvalue = monthlytotalvalue / (49.7f*(valuesofweek.size()+1));
+                StoredValues.energyproducedthismonth = String.format("%.2f",monthlytotalvalue);                                      ////   units per kwp this month
+                StoredValues.unitsperkwpthismonth = String.format("%.2f",thismonthavgvalue);
+
+                thismonthenergy.setText(StoredValues.energyproducedthismonth);
+                thismonthunitperkwp.setText(StoredValues.unitsperkwpthismonth);
 
 
                 BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
@@ -496,15 +463,75 @@ public class NewMainActivity extends AppCompatActivity {
         int year = cal.get(Calendar.YEAR);
         yearlygraph.clear();
         ArrayList<String> yeardates = yearlydetails.datesofyear(year);
-        String startdate = yeardates.get(0);
-        String endate = Returncurrentdate();
-        getyearlyvalues(NewMainActivity.this,barChart,description,startdate,endate,yeardates);
+        createrequestforyear(year,barChart,"Yearly");
+        //String startdate = yeardates.get(0);
+        //String endate = Returncurrentdate();
+        //getyearlyvalues(NewMainActivity.this,barChart,description,startdate,endate,yeardates);
     }
 
 
+    public void createrequestforyear(int year,BarChart barChart,String description)
+    {
+        String startdate,endate;
+        if(year == Integer.parseInt(MainActivity.returnapivalue("system start year",NewMainActivity.this)))    ///    for starting year of system
+        {
+            ArrayList<String> yeardates = yearlydetails.datesofyear(year);
+
+            startdate = MainActivity.returnapivalue("system start date",NewMainActivity.this);
+            endate = yeardates.get(yeardates.size()-2);
+
+            int numberofdays = findnumberofdaysforyear(yeardates,startdate,endate);
+
+            //getyearlyvalues(NewMainActivity.this,startdate,endate,yeardates,year,numberofdays);
+            getyearlyvalues(NewMainActivity.this,barChart,description,startdate,endate,yeardates,numberofdays);
+        }
+        else if(year==Calendar.getInstance().get(Calendar.YEAR))       ///      for current year
+        {
+            ArrayList<String> yeardates = yearlydetails.datesofyear(year);
+
+            startdate = yeardates.get(0);
+            endate = Returncurrentdate();
+
+            int numberofdays = findnumberofdaysforyear(yeardates,startdate,endate);
+
+            //getyearlyvalues(NewMainActivity.this,startdate,endate,yeardates,year,numberofdays);
+            getyearlyvalues(NewMainActivity.this,barChart,description,startdate,endate,yeardates,numberofdays);
+        }
+        else      ///     any other year
+        {
+            ArrayList<String> yeardates = yearlydetails.datesofyear(year);
+
+            startdate = yeardates.get(0);
+            endate = yeardates.get(yeardates.size()-2);
+
+            int numberofdays = findnumberofdaysforyear(yeardates,startdate,endate);
+
+            //getyearlyvalues(NewMainActivity.this,startdate,endate,yeardates,year,numberofdays);
+            getyearlyvalues(NewMainActivity.this,barChart,description,startdate,endate,yeardates,numberofdays);
+        }
+    }
 
 
-    public void getyearlyvalues(final Context context, final BarChart barChart, final String description, final String startdate, final String enddate, final ArrayList<String> yeardates)
+    int findnumberofdaysforyear(ArrayList<String> yeardates,String startdate,String enddate)
+    {
+        int startdateindex = yeardates.indexOf(startdate);
+        int endindex = yeardates.indexOf(enddate);
+
+        int numberofdays = (endindex-startdateindex)+1;
+
+        for(int k=startdateindex;k<endindex;k++)
+        {
+            if(yeardates.get(k)=="---")
+            {
+                numberofdays-=1;
+            }
+        }
+
+        return numberofdays;
+    }
+
+
+    public void getyearlyvalues(final Context context, final BarChart barChart, final String description, final String startdate, final String enddate, final ArrayList<String> yeardates,final int numberofdays)
     {
         Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         JSONparserclass parser = new JSONparserclass();
@@ -547,16 +574,16 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
-                    //if(yeardates.contains(Returncurrentdate()))
-                   // {
+                    if(yeardates.contains(Returncurrentdate()))
+                    {
                         int indexofthismonth=0;
                         Calendar c = Calendar.getInstance();
                         indexofthismonth = c.get(Calendar.MONTH);
-                        for_this_year(barChart,indexofthismonth,yeardates,context,months,description,j,valuesforgivenyear,valuesforeachmonthinyear);
-                    //}
+                        for_this_year(barChart,indexofthismonth,yeardates,context,months,description,j,valuesforgivenyear,valuesforeachmonthinyear,numberofdays);
+                    }
 
 
-                    /*
+
                     else{
 
                         if(j!=0)         //// for the starting year in which the preceeding months had no power generation
@@ -594,20 +621,9 @@ public class NewMainActivity extends AppCompatActivity {
 
                         }
 
-                        BarDataSet barDataSet = new BarDataSet(barEntries, "Months");
-
-                        BarData barData = new BarData(months, barDataSet);
 
 
-                        barChart.setData(barData);
-                        barChart.setDescription(descr);
-                        barChart.fitScreen();
-                        totalpower.setText("No data...");
-                        BarselectedY.setText("No date selected...");
-                        barselectedvalue.setText("No data...");
-                        Barselectedavgvalue.setText("No data...");
-
-                    }*/
+                    }
 
 
 
@@ -621,15 +637,6 @@ public class NewMainActivity extends AppCompatActivity {
 
                     ///   this portion of code should technically never occur but just in case, to check if the object recieved isn't of the required type
 
-
-                    /*
-                    Dialog dialog = new Dialog(getContext());
-                    dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-                    dialog.setContentView(R.layout.noresponsedialog_design);
-
-                    TextView noresponsetext = dialog.findViewById(R.id.noresponsetext);
-                    noresponsetext.setText("Data does not exist for selected year.....");
-                    dialog.show();*/
                     Toast.makeText(context,"Error occured, Values not avalaible",Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -644,7 +651,7 @@ public class NewMainActivity extends AppCompatActivity {
     }
 
 
-    private void for_this_year(final BarChart barChart,final int indextoaddtodays,final ArrayList<String> yeardates,final Context context, final ArrayList<String> months, final String descr, final int startindex, final List<Integer> Valuesforgivenyear, final ArrayList<Float> Valuesforeachmonth)
+    private void for_this_year(final BarChart barChart,final int indextoaddtodays,final ArrayList<String> yeardates,final Context context, final ArrayList<String> months, final String descr, final int startindex, final List<Integer> Valuesforgivenyear, final ArrayList<Float> Valuesforeachmonth,final float numberofdays)
     {
         //Snackbar.make(getView(),"Updating page with latest data....",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
         JSONparserclass parser = new JSONparserclass();
@@ -722,6 +729,16 @@ public class NewMainActivity extends AppCompatActivity {
                 barEntries.add(new BarEntry(lastmonthval, indextoaddtodays));
 
 
+
+
+
+                StoredValues.energyproducedthisyear = ""+String.format("%.2f",yearlytotalvalue);                   /////   for this year
+                StoredValues.unitsperkwpthisyear = ""+String.format("%.2f",(yearlytotalvalue / (49.7f*numberofdays/**numberofdays*/)));
+
+                thisyearenergy.setText(StoredValues.energyproducedthisyear);
+                thisyearunitperkwp.setText(StoredValues.unitsperkwpthisyear);
+
+
                 BarDataSet barDataSet = new BarDataSet(barEntries, "Months");
 
                 BarData barData = new BarData(months, barDataSet);
@@ -784,87 +801,10 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
-    ///   --------------------------------   base functions used for creating graphs     --------------------------------
-
-    public void createRandomBarGraph(String date1,String date2,BarChart barChart,String description)
-    {
-        SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        try
-        {
-            Date Date1 = simpleDateFormat.parse(date1);
-            Date Date2 = simpleDateFormat.parse(date2);
-
-            Calendar mDate1 = Calendar.getInstance();
-            Calendar mDate2 = Calendar.getInstance();
-            mDate1.clear();
-            mDate2.clear();
-
-            mDate1.setTime(Date1);
-            mDate2.setTime(Date2);
-
-            dates = new ArrayList<>();
-            dates = getList(mDate1,mDate2);
-
-            barEntries = new ArrayList<>();
-            float max=0f;
-            float value=0f;
-            random = new Random();
-            for(int j=0;j<dates.size();j++)
-            {
-                max = 100f;
-                value = random.nextFloat()*max;
-                barEntries.add(new BarEntry(value,j));
-            }
-
-        }
-        catch(ParseException e)
-        {
-            e.printStackTrace();
-        }
-
-        BarDataSet barDataSet = new BarDataSet(barEntries,"Dates");
-        BarData barData = new BarData(dates,barDataSet);
-        barChart.fitScreen();
-        barChart.setData(barData);
-        barChart.setDescription(description);
-        barChart.getLegend().setEnabled(false);
-        barChart.getAxisLeft().setGridColor(Color.parseColor("#ffffff"));
-        barChart.getAxisRight().setGridColor(Color.parseColor("#ffffff"));
-        barChart.getXAxis().setGridColor(Color.parseColor("#ffffff"));
-        barChart.getXAxis().setDrawLabels(false);
-        barChart.getAxisLeft().setDrawLabels(false);
-        barChart.getAxisRight().setDrawLabels(false);
-    }
 
 
 
-
-    public ArrayList<String> getList(Calendar startDate,Calendar endDate)
-    {
-        ArrayList<String> list = new ArrayList<>();
-        while(startDate.compareTo(endDate)<=0)
-        {
-            list.add(getDate(startDate));
-            startDate.add(Calendar.DAY_OF_MONTH,1);
-        }
-        return list;
-    }
-
-    public String getDate(Calendar cld)
-    {
-        String curdate = cld.get(Calendar.YEAR)+"/"+cld.get(Calendar.MONTH)+"/"+cld.get(Calendar.DAY_OF_MONTH);
-        try {
-            Date date = new SimpleDateFormat("yyyy/MM/dd").parse(curdate);
-            curdate = new SimpleDateFormat("yyyy/MM/dd").format(date);
-        }
-        catch(ParseException e)
-        {
-            e.printStackTrace();
-        }
-        return curdate;
-    }
-
-
+    ////   re-usable function for returning current date
 
     public String Returncurrentdate()
     {

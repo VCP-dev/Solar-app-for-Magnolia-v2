@@ -45,4 +45,22 @@ public class yearlydetails {
 
     }
 
+    public static int findnumberofdaysforyear(ArrayList<String> yeardates,String startdate,String enddate)
+    {
+        int startdateindex = yeardates.indexOf(startdate);
+        int endindex = yeardates.indexOf(enddate);
+
+        int numberofdays = (endindex-startdateindex)+1;
+
+        for(int k=startdateindex;k<endindex;k++)
+        {
+            if(yeardates.get(k)=="---")
+            {
+                numberofdays-=1;
+            }
+        }
+
+        return numberofdays;
+    }
+
 }
