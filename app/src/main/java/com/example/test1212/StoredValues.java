@@ -1,6 +1,31 @@
 package com.example.test1212;
 
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+
+import java.util.ArrayList;
+
 public class StoredValues {
+
+
+    // --------------------------------------
+    public static String graphtypetobeshown;
+    // --------------------------------------
+
+
+
+    // ------ for graph data which is transferred ------------
+
+    public static BarData transferredbardata;
+    //public static ArrayList<BarEntry> transferredbarentries;
+
+    public static String transferredbarchartdescription;
+
+    public static float transferredtotalvalue=0;
+
+    // ------ for graph data which is transferred ------------
+
 
 
     public static String systemname = null;

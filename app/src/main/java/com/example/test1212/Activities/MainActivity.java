@@ -45,8 +45,11 @@ public class MainActivity extends AppCompatActivity {
 
         //getSupportFragmentManager().beginTransaction().replace(R.id.fragment_containor,new StatusFragment(StoredValues.SystemStatus,StoredValues.energyproducedtoday,StoredValues.unitsperkwptoday,StoredValues.energyproducedyesterday,StoredValues.unitsperkwpyesterday,StoredValues.energyproducedthismonth, StoredValues.unitsperkwpthismonth,StoredValues.energyproducedlastmonth,StoredValues.unitsperkwplastmonth,StoredValues.energyproducedliftime,StoredValues.unitsperkwplifetime,StoredValues.energyproducedthisyear,StoredValues.unitsperkwpthisyear,StoredValues.energyproducedlastyear,StoredValues.unitsperkwplastyear)).commit();
 
+        Bundle extras = getIntent().getExtras();
+        String fragmenttype = extras.getString("fragmentname");
+        String energyfragmenttype = extras.getString("typeofenergyfragment");
 
-        String fragmenttype = getIntent().getStringExtra("fragmentname");
+        //String fragmenttype = getIntent().getStringExtra("fragmentname");
         setfragment(fragmenttype);
 
     }

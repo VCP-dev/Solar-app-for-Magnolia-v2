@@ -102,6 +102,9 @@ public class EnergyFragment extends Fragment {
 
 
 
+
+
+
     public static final int EnergyREQUEST_CODE = 22;    ///  Used to identify the result
 
     private OnFragmentInteractionListener mListener;
@@ -316,33 +319,41 @@ public class EnergyFragment extends Fragment {
 
 
 
+        /// ------------------------ since the graph is chosen through the new main activity, we're just leaving the tab layout invisible for now
+        tabLayout.setVisibility(View.INVISIBLE);
+        /// ------------------------ since the graph is chosen through the new main activity, we're just leaving the tab layout invisible for now
+
+
+
+
         selectweek.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                switch (typeoftab(tabLayout.getSelectedTabPosition()))
+                //switch (typeoftab(tabLayout.getSelectedTabPosition()))
+                switch(StoredValues.graphtypetobeshown)
                 {
-                    case "hour":
+                    //case "hour":
+                    case "hourly":
                        {
                            AppCompatDialogFragment newFragment = new DatePickerFragment();
                            // set the targetFragment to receive the results, specifying the request code
                            newFragment.setTargetFragment(EnergyFragment.this,EnergyREQUEST_CODE);
                            // show the datePicker
                            newFragment.show(fm, "datePicker");
-
                        }
                         break;
-                    case "month":
+                    //case "month":
+                    case "monthly":
                        {
                            String month = monthselector.getSelectedItem().toString();
                            String year = yearselector.getSelectedItem().toString();
                            String date = year+"-"+monthnumber(month)+"-"+"02";
-
                            createMonthBargraph("Monthly analysis of "+month+" "+year,date);
-
                        }
                         break;
-                    case "year":
+                    //case "year":
+                    case "yearly":
                        {
 
                            //DatePickerDialog dialog = new DatePickerDialog(EnergyFragment.this);
@@ -402,6 +413,28 @@ public class EnergyFragment extends Fragment {
             }
         });
 
+
+
+        switch(StoredValues.graphtypetobeshown){
+            case "monthly":
+                changegraph(1);
+                break;
+            case "yearly":
+                changegraph(2);
+                break;
+            case "hourly":
+            default:
+                changegraph(0);
+                break;
+        }
+
+        //BarDataSet barDataSet = new BarDataSet(StoredValues.transferredbarentries, "");
+        barChart.setData(StoredValues.transferredbardata);
+        barChart.setDescription(StoredValues.transferredbarchartdescription);
+        barChart.fitScreen();
+
+
+        totalvalue = StoredValues.transferredtotalvalue;
 
 
         return v;
@@ -658,6 +691,7 @@ public class EnergyFragment extends Fragment {
                     }
 
                     BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
+                    barDataSet.setDrawValues(true);
                     BarData barData = new BarData(timelist, barDataSet);
                     barChart.setData(barData);
                     barChart.setDescription(descr);
@@ -803,6 +837,7 @@ public class EnergyFragment extends Fragment {
                         }
                     }
                     BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
+                    barDataSet.setDrawValues(true);
                     BarData barData = new BarData(weekdays, barDataSet);
                     barChart.setData(barData);
                     barChart.setDescription(descr);
@@ -904,6 +939,7 @@ public class EnergyFragment extends Fragment {
                         }
 
                         BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
+                        barDataSet.setDrawValues(true);
                         BarData barData = new BarData(daysOfMonth, barDataSet);
                         barChart.setData(barData);
                         barChart.setDescription(descr);

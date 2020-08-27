@@ -156,6 +156,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:layout_gravity="center_vertical"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -166,6 +167,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="yesterday"
@@ -175,6 +177,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="this month"
@@ -184,6 +187,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="last month"
@@ -193,6 +197,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="this year"
@@ -202,6 +207,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="last year"
@@ -211,6 +217,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="lifetime"

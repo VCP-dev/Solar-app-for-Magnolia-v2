@@ -54,10 +54,22 @@ public class NewMainActivity extends AppCompatActivity {
     CardView hourlygraphcard;
     CardView monthlygraphcard;
     CardView yearlygraphcard;
+    CardView statuscard;
 
     BarChart hourlygraph;
     BarChart monthlygraph;
     BarChart yearlygraph;
+
+    BarData bardatahourly;
+    BarData bardatamonthly;
+    BarData bardatayearly;
+
+
+    ArrayList<BarEntry> barenetryhourlygraph;
+    ArrayList<BarEntry> barentrymonthlygraph;
+    ArrayList<BarEntry> barentryyearlygraph;
+
+
 
     ImageView aboutbutton;
 
@@ -75,6 +87,10 @@ public class NewMainActivity extends AppCompatActivity {
     ArrayList<String> dates;
     Random random;
     ArrayList<BarEntry> barEntries;
+
+
+
+    Boolean canpress;
 
 
 
@@ -101,9 +117,13 @@ public class NewMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_main);
 
+        canpress=false;
+
         hourlygraphcard = findViewById(R.id.todaygraphcard);
         monthlygraphcard = findViewById(R.id.thismonthgraphcard);
         yearlygraphcard = findViewById(R.id.thisyeargraphcard);
+        statuscard = findViewById(R.id.statuspagecard);
+
 
         hourlygraph = findViewById(R.id.hourlygraph);
         monthlygraph = findViewById(R.id.monthlygraph);
@@ -157,6 +177,152 @@ public class NewMainActivity extends AppCompatActivity {
         },delay_to_call);
         //createRandomBarGraph("10-10-2020","15-10-2020",hourlygraph,"Hourly");
 
+
+        statuscard.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(!canpress) {
+                    return false;
+                }
+                else{
+                    Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("fragmentname","status");
+                    extras.putString("typeofenergyfragment","none");
+                    extras.putString("totalvalue","none");
+                    StoredValues.graphtypetobeshown = "none";
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+        });
+
+        hourlygraph.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(!canpress) {
+                    return false;
+                }
+                else{
+                    Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("fragmentname","energy");
+                    extras.putString("typeofenergyfragment","hourly");
+                    StoredValues.transferredtotalvalue = hourlytotalvalue;
+                    StoredValues.graphtypetobeshown = "hourly";
+                    StoredValues.transferredbardata = bardatahourly;
+                    //StoredValues.transferredbarentries = barenetryhourlygraph;
+                    StoredValues.transferredbarchartdescription = "Hourly analysis of "+Returncurrentdate();
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+        });
+
+        monthlygraph.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(!canpress) {
+                    return false;
+                }
+                else{
+                    Calendar cal = Calendar.getInstance();
+                    String month = monthname(cal.get(Calendar.MONTH));
+
+
+                    Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("fragmentname","energy");
+                    extras.putString("typeofenergyfragment","monthly");
+                    StoredValues.transferredtotalvalue = monthlytotalvalue;
+                    StoredValues.graphtypetobeshown = "monthly";
+                    StoredValues.transferredbardata = bardatamonthly;
+                    //StoredValues.transferredbarentries = barentrymonthlygraph;
+                    StoredValues.transferredbarchartdescription = "Monthly analysis of "+month+" "+cal.get(Calendar.YEAR);
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+        });
+
+        yearlygraph.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if(!canpress) {
+                    return false;
+                }
+                else{
+                    Calendar cal = Calendar.getInstance();
+
+
+                    Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("fragmentname","energy");
+                    extras.putString("typeofenergyfragment","yearly");
+                    StoredValues.transferredtotalvalue=yearlytotalvalue;
+                    StoredValues.graphtypetobeshown = "yearly";
+                    //StoredValues.transferredbarentries = barentryyearlygraph;
+                    StoredValues.transferredbardata = bardatayearly;
+                    StoredValues.transferredbarchartdescription = "Yearly analysis of "+cal.get(Calendar.YEAR);
+                    intent.putExtras(extras);
+                    startActivity(intent);
+                    return true;
+                }
+            }
+        });
+
+
+
+    }
+
+
+
+    String monthname(int month)
+    {
+        String monthnum="";
+        switch(month)
+        {
+            case 0:
+                monthnum = "Jan";
+                break;
+            case 1:
+                monthnum = "Feb";
+                break;
+            case 2:
+                monthnum = "March";
+                break;
+            case 3:
+                monthnum = "April";
+                break;
+            case 4:
+                monthnum = "May";
+                break;
+            case 5:
+                monthnum = "June";
+                break;
+            case 6:
+                monthnum = "July";
+                break;
+            case 7:
+                monthnum = "Aug";
+                break;
+            case 8:
+                monthnum = "Sep";
+                break;
+            case 9:
+                monthnum = "Oct";
+                break;
+            case 10:
+                monthnum = "Nov";
+                break;
+            case 11:
+                monthnum = "Dec";
+                break;
+        }
+        return monthnum;
 
     }
 
@@ -238,8 +404,20 @@ public class NewMainActivity extends AppCompatActivity {
                         }
                     }
 
+                    barenetryhourlygraph = barEntries;
+
                     BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
-                    BarData barData = new BarData(timelist, barDataSet);
+                    barDataSet.setDrawValues(true);
+
+                    bardatahourly = new BarData(timelist,barDataSet);
+
+                    BarDataSet currentbarDataSet = new BarDataSet(barEntries, "Dates");
+
+                    currentbarDataSet.setHighLightColor(Color.TRANSPARENT);
+                    currentbarDataSet.setHighLightAlpha(0);
+                    currentbarDataSet.setDrawValues(false);
+
+                    BarData barData = new BarData(timelist, currentbarDataSet);
                     barChart.setData(barData);
                     barChart.setDescription(descr);
                     barChart.fitScreen();
@@ -419,9 +597,21 @@ public class NewMainActivity extends AppCompatActivity {
                 thismonthenergy.setText(StoredValues.energyproducedthismonth);
                 thismonthunitperkwp.setText(StoredValues.unitsperkwpthismonth);
 
+                barentrymonthlygraph = barEntries;
+
 
                 BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
-                BarData barData = new BarData(daysOfMonth, barDataSet);
+                barDataSet.setDrawValues(true);
+
+                bardatamonthly = new BarData(daysOfMonth, barDataSet);
+
+                BarDataSet currentbarDataSet = new BarDataSet(barEntries, "Dates");
+
+                currentbarDataSet.setHighLightColor(Color.TRANSPARENT);
+                currentbarDataSet.setHighLightAlpha(0);
+                currentbarDataSet.setDrawValues(false);
+
+                BarData barData = new BarData(daysOfMonth, currentbarDataSet);
                 barChart.setData(barData);
                 barChart.setDescription(descr);
                 barChart.fitScreen();
@@ -434,6 +624,8 @@ public class NewMainActivity extends AppCompatActivity {
                 barChart.getXAxis().setDrawLabels(false);
                 barChart.getAxisLeft().setDrawLabels(false);
                 barChart.getAxisRight().setDrawLabels(false);
+
+                canpress=true;
 
 
             }
@@ -651,6 +843,13 @@ public class NewMainActivity extends AppCompatActivity {
     }
 
 
+
+
+
+
+    ///  in a way the call in this function isn't required since today's data should already exist. Remove the call and use that if you want
+
+
     private void for_this_year(final BarChart barChart,final int indextoaddtodays,final ArrayList<String> yeardates,final Context context, final ArrayList<String> months, final String descr, final int startindex, final List<Integer> Valuesforgivenyear, final ArrayList<Float> Valuesforeachmonth,final float numberofdays)
     {
         //Snackbar.make(getView(),"Updating page with latest data....",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
@@ -739,10 +938,21 @@ public class NewMainActivity extends AppCompatActivity {
                 thisyearunitperkwp.setText(StoredValues.unitsperkwpthisyear);
 
 
+                barentryyearlygraph = barEntries;
+
+
                 BarDataSet barDataSet = new BarDataSet(barEntries, "Months");
+                barDataSet.setDrawValues(true);
 
-                BarData barData = new BarData(months, barDataSet);
+                bardatayearly = new BarData(months,barDataSet);
 
+                BarDataSet currentbarDataSet = new BarDataSet(barEntries, "Months");
+
+                currentbarDataSet.setHighLightColor(Color.TRANSPARENT);
+                currentbarDataSet.setHighLightAlpha(0);
+                currentbarDataSet.setDrawValues(false);
+
+                BarData barData = new BarData(months, currentbarDataSet);
 
                 barChart.setData(barData);
                 barChart.setDescription(descr);
