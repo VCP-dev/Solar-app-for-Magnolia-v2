@@ -10,6 +10,7 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -39,6 +40,7 @@ import com.example.test1212.SolarApi;
 import com.example.test1212.StoredValues;
 import com.example.test1212.RequestedValues.SummaryOfDay;
 import com.example.test1212.RequestedValues.System;
+import com.example.test1212.UtilityClasses.JSONparserclass;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -567,6 +569,15 @@ public class StatusFragment extends Fragment {
 
 
 
+
+
+
+    /// ---------------------note---------------------
+
+    // This function isn't even needed anymore since lifetime can be found directly from the call for the summary of the system
+
+    /// ---------------------note---------------------
+
     public void getlifetimevalues(final Context context)
     {
         //final Call<LifetimeValues> lifetimeValues = SolarApi.getService().getLifetimeValues(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
@@ -646,10 +657,19 @@ public class StatusFragment extends Fragment {
     public void getvaluesfortwoyears(final Context context)
     {
         int thisyear = Calendar.getInstance().get(Calendar.YEAR);
-        int lastyear = thisyear-1;
+        final int lastyear = thisyear-1;
 
         createrequestforyear(thisyear);
-        createrequestforyear(lastyear);
+        //createrequestforyear(lastyear);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+
+                createrequestforyear(lastyear);
+
+            }
+        },790);
 
     }
 
@@ -661,8 +681,12 @@ public class StatusFragment extends Fragment {
         {
             ArrayList<String> yeardates = yearlydetails.datesofyear(year);
 
-            startdate = MainActivity.returnapivalue("system start date",getContext());
+            JSONparserclass parser = new JSONparserclass();
+
+            startdate = parser.returnapivalue("system start date",getContext());
             endate = yeardates.get(yeardates.size()-2);
+
+            Toast.makeText(getContext(), "startdate:"+startdate+",endate:"+endate, Toast.LENGTH_SHORT);//.show();
 
             int numberofdays = findnumberofdaysforyear(yeardates,startdate,endate);
 
@@ -800,6 +824,14 @@ public class StatusFragment extends Fragment {
                         StoredValues.unitsperkwpthisyear = ""+(totalvalue / (49.7f*numberofdays/**numberofdays*/));
 
 
+                        energyproducedthisyear.setText(StoredValues.energyproducedthisyear);
+                        unitsperkwpthisyear.setText(StoredValues.unitsperkwpthisyear);
+                        energyproducedthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                        energyproducedthisyear.setTextColor(Color.parseColor("#000000"));
+                        unitsperkwpthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                        unitsperkwpthisyear.setTextColor(Color.parseColor("#000000"));
+
+
                     }
                     else if (year==Calendar.getInstance().get(Calendar.YEAR)-1 && StoredValues.energyproducedlastyear==null)
                     {
@@ -817,9 +849,17 @@ public class StatusFragment extends Fragment {
                         StoredValues.energyproducedlastyear =""+totalvalue;
                         StoredValues.unitsperkwplastyear =""+(totalvalue / (49.7f*numberofdays/**numberofdays*/));
 
+
+                        energyproducedlastyear.setText(StoredValues.energyproducedlastyear);
+                        unitsperkwplastyear.setText(StoredValues.unitsperkwplastyear);
+                        energyproducedlastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                        energyproducedlastyear.setTextColor(Color.parseColor("#000000"));
+                        unitsperkwplastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+                        unitsperkwplastyear.setTextColor(Color.parseColor("#000000"));
                     }
 
 
+                    /*
                     energyproducedthisyear.setText(StoredValues.energyproducedthisyear);
                     unitsperkwpthisyear.setText(StoredValues.unitsperkwpthisyear);
                     energyproducedthisyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
@@ -837,11 +877,12 @@ public class StatusFragment extends Fragment {
                     unitsperkwplastyear.setTextColor(Color.parseColor("#000000"));
 
 
+                     */
+
 
                 }
                 else{
 
-                    ///   this portion of code should technically never occur but just in case, to check if the object recieved isn't of the required type
 
                     Dialog dialog = new Dialog(getContext());
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);

@@ -1,5 +1,6 @@
 package com.example.test1212.Activities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -7,9 +8,11 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
@@ -166,6 +169,7 @@ public class NewMainActivity extends AppCompatActivity {
         });
 
 
+        Toast.makeText(NewMainActivity.this,"Updating...",Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -276,6 +280,12 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
+
+
+
+
+
+
     }
 
 
@@ -355,7 +365,7 @@ public class NewMainActivity extends AppCompatActivity {
 
         JSONparserclass parser = new JSONparserclass();
 
-        Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         //Toast.makeText(getContext(), "starttime: " + starttime + " || endtime: " + endtime, Toast.LENGTH_LONG).show();
 
         Call<HourlyValues> hourlyValues;
@@ -376,7 +386,7 @@ public class NewMainActivity extends AppCompatActivity {
             public void onResponse(Call<HourlyValues> call, Response<HourlyValues> response) {
                 if(response.body() instanceof HourlyValues)
                 {
-                    Toast.makeText(context,"Receiving values and creating graph.....",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"Receiving values and creating graph.....",Toast.LENGTH_SHORT).show();
 
                     hourlytotalvalue = 0;
 
@@ -419,7 +429,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                     BarData barData = new BarData(timelist, currentbarDataSet);
                     barChart.setData(barData);
-                    barChart.setDescription(descr);
+                    //barChart.setDescription(descr);
                     barChart.fitScreen();
                     barChart.setScaleEnabled(false);
                     barChart.setData(barData);
@@ -431,7 +441,7 @@ public class NewMainActivity extends AppCompatActivity {
                     barChart.getAxisLeft().setDrawLabels(false);
                     barChart.getAxisRight().setDrawLabels(false);
 
-                    Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
 
                     String todaysvaluestring = ""+String.format("%.2f",hourlytotalvalue);                                           ////   energy produced today
                     float todayavgvalue = hourlytotalvalue/49.7f;//todaysvalue / 49.7f;
@@ -497,7 +507,7 @@ public class NewMainActivity extends AppCompatActivity {
     public void getMonthlyValues(final BarChart barChart,final Context context, final String description, final String startdate, final String enddate)
     {
         JSONparserclass parser = new JSONparserclass();
-        Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         final Call<WeeklyValues> monthlyValues = SolarApi.getService(context).getValuesofWeek(parser.returnapivalue("system_id",context),startdate,enddate,parser.returnapivalue("apikey",context),parser.returnapivalue("user_id",context));
         final String descr = description;
 
@@ -507,7 +517,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                 if(response.body() instanceof WeeklyValues) {
 
-                    Toast.makeText(context,"Receiving values and creating graph.....",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"Receiving values and creating graph.....",Toast.LENGTH_SHORT).show();
 
                     monthlytotalvalue = 0;
 
@@ -525,7 +535,7 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
-                    Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
                 }
                 else
                 {
@@ -613,7 +623,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                 BarData barData = new BarData(daysOfMonth, currentbarDataSet);
                 barChart.setData(barData);
-                barChart.setDescription(descr);
+                //barChart.setDescription(descr);
                 barChart.fitScreen();
                 barChart.setScaleEnabled(false);
                 barChart.setData(barData);
@@ -625,7 +635,8 @@ public class NewMainActivity extends AppCompatActivity {
                 barChart.getAxisLeft().setDrawLabels(false);
                 barChart.getAxisRight().setDrawLabels(false);
 
-                canpress=true;
+
+                getlifetimevalues(context);
 
 
             }
@@ -725,7 +736,7 @@ public class NewMainActivity extends AppCompatActivity {
 
     public void getyearlyvalues(final Context context, final BarChart barChart, final String description, final String startdate, final String enddate, final ArrayList<String> yeardates,final int numberofdays)
     {
-        Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
+        //Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         JSONparserclass parser = new JSONparserclass();
         final Call<WeeklyValues> yearlyValues = SolarApi.getService(context).getValuesofWeek(parser.returnapivalue("system_id",context),startdate,enddate,parser.returnapivalue("apikey",context),parser.returnapivalue("user_id",context));
         final String descr = description;
@@ -738,7 +749,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                     ArrayListConverter converter = new ArrayListConverter();
 
-                    Toast.makeText(context,"Receiving values and creating graph.....",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"Receiving values and creating graph.....",Toast.LENGTH_SHORT).show();
 
                     WeeklyValues values = response.body();
 
@@ -821,7 +832,7 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
-                    Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
 
 
                 }
@@ -955,7 +966,7 @@ public class NewMainActivity extends AppCompatActivity {
                 BarData barData = new BarData(months, currentbarDataSet);
 
                 barChart.setData(barData);
-                barChart.setDescription(descr);
+                //barChart.setDescription(descr);
                 barChart.fitScreen();
                 barChart.setScaleEnabled(false);
                 barChart.setData(barData);
@@ -997,6 +1008,89 @@ public class NewMainActivity extends AppCompatActivity {
         Calendar givenyear = Calendar.getInstance();
         givenyear.setTime(startdate);
         return givenyear.get(Calendar.MONTH);
+    }
+
+
+
+
+
+
+
+    ///   --------------------------------   lifetime value   --------------------------------
+
+
+
+
+    /// ---------------------note---------------------
+
+    // This function isn't even needed anymore since lifetime can be found directly from the call for the summary of the system
+
+    /// ---------------------note---------------------
+
+
+    public void getlifetimevalues(final Context context)
+    {
+        //final Call<LifetimeValues> lifetimeValues = SolarApi.getService().getLifetimeValues(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+
+        final Call<WeeklyValues> lifetimeValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("system start date",context),Returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+
+        lifetimeValues.enqueue(new Callback<WeeklyValues>() {
+            @RequiresApi(api = Build.VERSION_CODES.O)
+            @Override
+            public void onResponse(Call<WeeklyValues> call, Response<WeeklyValues> response) {
+                WeeklyValues lifetimeValues = response.body();
+
+                //String systemstatus = lifetimeValues.getMeta().getStatus();
+
+                List<Integer> Values = lifetimeValues.getProduction();
+
+                Integer totallifetimevalue = 0;
+
+                for(int k=0;k<Values.size();k++)
+                {
+                    totallifetimevalue+=Values.get(k);
+                }
+
+
+                /*
+                String systemstartdate = MainActivity.returnapivalue("system_start_date",getContext());
+                String todaysdate = returncurrentdate();
+                int numberofdays = numberofdaysbetweentwodates(systemstartdate,todaysdate);
+
+                 */
+                int numberofdayslifetime = Values.size();
+
+                //Toast.makeText(context,""+numberofdayslifetime,Toast.LENGTH_SHORT).show();
+
+
+
+
+                Integer lk = totallifetimevalue / 1000;
+                Integer lr = totallifetimevalue % 1000;
+                String lifetimevaluestring = lk + "." + lr;              ////   energy produced during lifetime
+                float lifetimeavgvalue = totallifetimevalue / (49.7f*numberofdayslifetime/**numberofdays*/);
+                int tmka = (int) lifetimeavgvalue / 1000;
+                int tmra = (int) lifetimeavgvalue % 1000;
+                String lifetimeavgvaluestring = tmka + "." + tmra;         ////   units per kwp during lifetime
+                //StoredValues.energyproducedliftime = lifetimevaluestring;
+                //StoredValues.unitsperkwplifetime = lifetimeavgvaluestring;
+
+
+                lifetimeenergy.setText(lifetimevaluestring);
+                lifetimeunitperkwp.setText(lifetimeavgvaluestring);
+
+
+                canpress=true;
+
+                Toast.makeText(NewMainActivity.this, "Updating completed...", Toast.LENGTH_SHORT).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<WeeklyValues> call, Throwable t) {
+                Toast.makeText(context,"Error occured, Could not get lifetime values",Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 

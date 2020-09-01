@@ -7,6 +7,16 @@
     android:layout_height="match_parent"
     tools:context="com.example.test1212.Activities.NewMainActivity">
 
+    <TextView
+        android:layout_marginTop="10dp"
+        android:layout_alignParentTop="true"
+        android:text="Solar app for Magnolia"
+        android:gravity="center_horizontal"
+        android:textSize="23dp"
+        android:textColor="#fff"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
     <ImageView
         android:layout_marginTop="10dp"
         android:layout_marginRight="12dp"
@@ -36,8 +46,8 @@
                 android:id="@+id/todaygraphcard"
 
                 app:cardCornerRadius="9dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="0.5"
@@ -49,10 +59,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <TextView
+                        android:text="Hourly"
+                        android:textSize="17dp"
+                        android:gravity="center"
+                        android:layout_weight="0.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
+
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/hourlygraph"
+                        android:layout_weight="0.9"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="0dp"/>
 
                 </LinearLayout>
 
@@ -66,8 +85,8 @@
                 android:id="@+id/thismonthgraphcard"
 
                 app:cardCornerRadius="9dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginBottom="20dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="10dp"
                 android:layout_marginLeft="5dp"
                 android:layout_marginRight="5dp"
                 android:layout_weight="0.5"
@@ -79,10 +98,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <com.github.mikephil.charting.charts.BarChart
-                        android:id="@+id/monthlygraph"                        android:layout_weight="0.87"
+                    <TextView
+                        android:text="Monthly"
+                        android:textSize="17dp"
+                        android:gravity="center"
+                        android:layout_weight="0.1"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_height="0dp"/>
+
+                    <com.github.mikephil.charting.charts.BarChart
+                        android:id="@+id/monthlygraph"
+                        android:layout_weight="0.9"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
 
                 </LinearLayout>
 
@@ -117,10 +145,19 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
+                    <TextView
+                        android:text="Yearly"
+                        android:textSize="17dp"
+                        android:gravity="center"
+                        android:layout_weight="0.1"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp"/>
+
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/yearlygraph"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"/>
+                        android:layout_weight="0.9"
+                        android:layout_height="0dp"/>
 
                 </LinearLayout>
 
