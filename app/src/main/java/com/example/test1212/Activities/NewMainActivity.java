@@ -97,6 +97,10 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
+    Boolean doubleBackToExit;
+
+
+
 
     // --------------------------------- for status card ---------------------------------
 
@@ -121,6 +125,7 @@ public class NewMainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_new_main);
 
         canpress=false;
+        doubleBackToExit=false;
 
         hourlygraphcard = findViewById(R.id.todaygraphcard);
         monthlygraphcard = findViewById(R.id.thismonthgraphcard);
@@ -279,14 +284,31 @@ public class NewMainActivity extends AppCompatActivity {
         });
 
 
-
-
-
-
-
-
-
     }
+
+
+
+
+    @Override
+    public void onBackPressed(){
+        if(doubleBackToExit){
+            super.onBackPressed();
+            return;
+        }
+
+        this.doubleBackToExit=true;
+        Toast.makeText(NewMainActivity.this,"Please press back again to exit...",Toast.LENGTH_SHORT).show();
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+              doubleBackToExit=false;
+            }
+        },2000);
+    }
+
+
+
 
 
 
