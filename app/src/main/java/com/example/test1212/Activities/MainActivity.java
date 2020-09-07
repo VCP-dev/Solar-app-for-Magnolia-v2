@@ -127,10 +127,10 @@ public class MainActivity extends AppCompatActivity {
                 case "url":
                     returnedvalue = obj.getString("url");
                     break;
-                case "system start date":
+                case "system_start_date":
                     returnedvalue = obj.getString("system_start_date");
                     break;
-                case "system start year":
+                case "system_start_year":
                     returnedvalue = obj.getString("system_start_year");
                     break;
             }

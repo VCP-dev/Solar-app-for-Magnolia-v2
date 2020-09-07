@@ -361,9 +361,9 @@ public class EnergyFragment extends Fragment {
                            String startdate,endate;
 
 
-                           if(year == Integer.parseInt(MainActivity.returnapivalue("system start year",getContext())))    ///    for starting year of system
+                           if(year == Integer.parseInt(MainActivity.returnapivalue("system_start_year",getContext())))    ///    for starting year of system
                            {
-                               startdate = MainActivity.returnapivalue("system start date",getContext());
+                               startdate = MainActivity.returnapivalue("system_start_date",getContext());
 
                                ArrayList<String> yeardates = yearlydetails.datesofyear(year);
 

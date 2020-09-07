@@ -12,14 +12,14 @@
         android:id="@+id/appiconsplash"
         android:paddingTop="110dp"
         android:src="@drawable/solar_app_icon_new"
-        android:layout_weight="0.6"
+        android:layout_weight="0.5"
         android:layout_width="match_parent"
         android:layout_height="0dp"/>
 
     <TextView
         android:paddingTop="10dp"
-        android:layout_weight="0.4"
-        android:text="Magnolia Enphase Solar App"
+        android:layout_weight="0.5"
+        android:text="Magnolia Solar App"
         android:textColor="#fff"
         android:textAlignment="center"
         android:textSize="40dp"

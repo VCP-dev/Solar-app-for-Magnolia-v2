@@ -2,29 +2,39 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/colorPrimary"
+    android:background="#fff"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.example.test1212.Activities.NewMainActivity">
 
-    <TextView
-        android:layout_marginTop="10dp"
-        android:layout_alignParentTop="true"
-        android:text="Solar app for Magnolia"
-        android:gravity="center_horizontal"
-        android:textSize="23dp"
-        android:textColor="#fff"
+    <RelativeLayout
+        android:paddingBottom="10dp"
+        android:background="@color/colorPrimary"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content">
 
-    <ImageView
-        android:layout_marginTop="10dp"
-        android:layout_marginRight="12dp"
-        android:id="@+id/about_button_main"
-        android:layout_alignParentEnd="true"
-        android:src="@drawable/new_about_icon"
-        android:layout_width="30dp"
-        android:layout_height="30dp"/>
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_alignParentTop="true"
+            android:text="Solar app for Magnolia"
+            android:gravity="center_horizontal"
+            android:textSize="20dp"
+            android:textColor="#fff"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <ImageView
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="12dp"
+            android:id="@+id/about_button_main"
+            android:layout_alignParentEnd="true"
+            android:src="@drawable/new_about_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+
+    </RelativeLayout>
+
+
 
     <LinearLayout
         android:layout_marginTop="5dp"
@@ -253,6 +263,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:background="#F2F2F2"
                             android:layout_gravity="center_vertical"
                             android:textColor="#000"
@@ -264,6 +275,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -274,6 +286,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -283,7 +296,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
 
-                        <TextView
+                       <!-- <TextView
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -291,9 +304,10 @@
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
+                            android:layout_height="0dp"/>-->
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -303,7 +317,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
 
-                        <TextView
+                        <!--<TextView
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -311,9 +325,10 @@
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
+                            android:layout_height="0dp"/>-->
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -334,6 +349,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/todayenergy"
                             android:layout_gravity="center_vertical"
                             android:textColor="#000"
@@ -345,6 +361,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/yesterdayenergy"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -355,16 +372,17 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/thismonthenergy"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="..."
-                            android:textSize="13dp"
+                            android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
 
-                        <TextView
+                        <!--<TextView
                             android:id="@+id/lastmonthenergy"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -372,20 +390,11 @@
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
+                            android:layout_height="0dp"/>-->
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/thisyearenergy"
-                            android:textColor="#000"
-                            android:layout_marginLeft="1dp"
-                            android:text="..."
-                            android:textSize="13dp"
-                            android:layout_weight="0.14"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
-
-                        <TextView
-                            android:id="@+id/lastyearenergy"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="..."
@@ -394,7 +403,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
 
+                        <!--<TextView
+                            android:id="@+id/lastyearenergy"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>-->
+
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/lifetimeenergy"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -415,6 +435,7 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/todayunitperkwp"
                             android:layout_gravity="center_vertical"
                             android:textColor="#000"
@@ -426,6 +447,7 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/yesterdayunitperkwp"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -436,16 +458,17 @@
                             android:layout_height="0dp"/>
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/thismonthunitperkwp"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="..."
-                            android:textSize="13dp"
+                            android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
 
-                        <TextView
+                       <!-- <TextView
                             android:id="@+id/lastmonthunitperkwp"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -453,20 +476,11 @@
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
+                            android:layout_height="0dp"/>-->
 
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/thisyearunitperkwp"
-                            android:textColor="#000"
-                            android:layout_marginLeft="1dp"
-                            android:text="..."
-                            android:textSize="13dp"
-                            android:layout_weight="0.14"
-                            android:layout_width="match_parent"
-                            android:layout_height="0dp"/>
-
-                        <TextView
-                            android:id="@+id/lastyearunitperkwp"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
                             android:text="..."
@@ -475,7 +489,18 @@
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
 
+                        <!--<TextView
+                            android:id="@+id/lastyearunitperkwp"
+                            android:textColor="#000"
+                            android:layout_marginLeft="1dp"
+                            android:text="..."
+                            android:textSize="11dp"
+                            android:layout_weight="0.14"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"/>-->
+
                         <TextView
+                            android:paddingTop="18dp"
                             android:id="@+id/lifetimeunitperkwp"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
@@ -597,6 +622,13 @@
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>-->
+
+    <ProgressBar
+        android:id="@+id/loadingcircle"
+        android:indeterminate="true"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
 
 
 </RelativeLayout>

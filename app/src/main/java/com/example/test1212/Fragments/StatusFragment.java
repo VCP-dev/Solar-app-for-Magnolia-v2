@@ -43,6 +43,7 @@ import com.example.test1212.RequestedValues.System;
 import com.example.test1212.UtilityClasses.JSONparserclass;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -582,7 +583,7 @@ public class StatusFragment extends Fragment {
     {
         //final Call<LifetimeValues> lifetimeValues = SolarApi.getService().getLifetimeValues(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
 
-        final Call<WeeklyValues> lifetimeValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("system start date",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        final Call<WeeklyValues> lifetimeValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("system_start_date",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
 
         lifetimeValues.enqueue(new Callback<WeeklyValues>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -677,16 +678,16 @@ public class StatusFragment extends Fragment {
     public void createrequestforyear(int year)
     {
         String startdate,endate;
-        if(year == Integer.parseInt(MainActivity.returnapivalue("system start year",getContext())))    ///    for starting year of system
+        if(year == Integer.parseInt(MainActivity.returnapivalue("system_start_year",getContext())))    ///    for starting year of system
         {
             ArrayList<String> yeardates = yearlydetails.datesofyear(year);
 
             JSONparserclass parser = new JSONparserclass();
 
-            startdate = parser.returnapivalue("system start date",getContext());
+            startdate = parser.returnapivalue("system_start_date",getContext());
             endate = yeardates.get(yeardates.size()-2);
 
-            Toast.makeText(getContext(), "startdate:"+startdate+",endate:"+endate, Toast.LENGTH_SHORT);//.show();
+            //Toast.makeText(getContext(), "startdate:"+startdate+",endate:"+endate, Toast.LENGTH_SHORT);//.show();
 
             int numberofdays = findnumberofdaysforyear(yeardates,startdate,endate);
 
@@ -740,6 +741,17 @@ public class StatusFragment extends Fragment {
     public void getyearlyvalues(final Context context, final String startdate, final String enddate, final ArrayList<String> yeardates, final int year, final int numberofdays)
     {
 
+        if(year==Calendar.getInstance().get(Calendar.YEAR)-1 && StoredValues.energyproducedlastyear!=null)
+        {
+            energyproducedlastyear.setText(StoredValues.energyproducedlastyear);
+            unitsperkwplastyear.setText(StoredValues.unitsperkwplastyear);
+            energyproducedlastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+            energyproducedlastyear.setTextColor(Color.parseColor("#000000"));
+            unitsperkwplastyear.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
+            unitsperkwplastyear.setTextColor(Color.parseColor("#000000"));
+            return;
+        }
+
         final Call<WeeklyValues> yearlyValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),startdate,enddate,MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
 
 
@@ -747,6 +759,8 @@ public class StatusFragment extends Fragment {
             @RequiresApi(api = Build.VERSION_CODES.O)
             @Override
             public void onResponse(Call<WeeklyValues> call, Response<WeeklyValues> response) {
+
+                //Toast.makeText(context,"year:"+year+" startdate:"+startdate+" enddate:"+enddate,Toast.LENGTH_LONG);//.show();
 
                 if(response.body() instanceof WeeklyValues) {
 
@@ -859,6 +873,7 @@ public class StatusFragment extends Fragment {
                     }
 
 
+
                     /*
                     energyproducedthisyear.setText(StoredValues.energyproducedthisyear);
                     unitsperkwpthisyear.setText(StoredValues.unitsperkwpthisyear);
@@ -880,19 +895,25 @@ public class StatusFragment extends Fragment {
                      */
 
 
-                }
-                else{
+               }
+               else{
 
+                    //Toast.makeText(context,"For the year "+year+" startdate:"+startdate+" enddate:"+enddate,Toast.LENGTH_SHORT).show();
 
-                    Dialog dialog = new Dialog(getContext());
+                    Toast.makeText(context,"invalid response: "+ new Gson().toJson(response).toString(),Toast.LENGTH_LONG).show();
+
+                   /* Dialog dialog = new Dialog(getContext());
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.noresponsedialog_design);
 
                     TextView noresponsetext = dialog.findViewById(R.id.noresponsetext);
-                    noresponsetext.setText("Data recieved is not the right type.....");
-                    dialog.show();
+                    noresponsetext.setText("Data recieved is not the right type");
+
+                    dialog.show();*/
                     return;
                 }
+
+
 
             }
 

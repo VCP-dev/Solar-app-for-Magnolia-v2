@@ -16,6 +16,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +37,7 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.gson.Gson;
 
 
 import java.text.DateFormat;
@@ -52,6 +54,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 public class NewMainActivity extends AppCompatActivity {
+
+
+    ProgressBar loadingcircle;
 
 
     CardView hourlygraphcard;
@@ -124,6 +129,8 @@ public class NewMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_main);
 
+        loadingcircle = findViewById(R.id.loadingcircle);
+
         canpress=false;
         doubleBackToExit=false;
 
@@ -146,12 +153,12 @@ public class NewMainActivity extends AppCompatActivity {
         yesterdayunitperkwp = findViewById(R.id.yesterdayunitperkwp);
         thismonthenergy = findViewById(R.id.thismonthenergy);            // this month
         thismonthunitperkwp = findViewById(R.id.thismonthunitperkwp);
-        lastmonthenergy = findViewById(R.id.lastmonthenergy);            // last month
-        lastmonthunitperkwp = findViewById(R.id.lastmonthunitperkwp);
+    //    lastmonthenergy = findViewById(R.id.lastmonthenergy);            // last month
+    //    lastmonthunitperkwp = findViewById(R.id.lastmonthunitperkwp);
         thisyearenergy = findViewById(R.id.thisyearenergy);              // this year
         thisyearunitperkwp = findViewById(R.id.thisyearunitperkwp);
-        lastyearenergy = findViewById(R.id.lastyearenergy);              // last year
-        lastyearunitperkwp = findViewById(R.id.lastyearunitperkwp);
+    //    lastyearenergy = findViewById(R.id.lastyearenergy);              // last year
+    //    lastyearunitperkwp = findViewById(R.id.lastyearunitperkwp);
         lifetimeenergy = findViewById(R.id.lifetimeenergy);              // lifetime
         lifetimeunitperkwp = findViewById(R.id.lifetimeunitperkwp);
 
@@ -174,7 +181,7 @@ public class NewMainActivity extends AppCompatActivity {
         });
 
 
-        Toast.makeText(NewMainActivity.this,"Updating...",Toast.LENGTH_SHORT).show();
+        Toast.makeText(NewMainActivity.this,"Updating, please wait...",Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -187,11 +194,11 @@ public class NewMainActivity extends AppCompatActivity {
         //createRandomBarGraph("10-10-2020","15-10-2020",hourlygraph,"Hourly");
 
 
-        statuscard.setOnLongClickListener(new View.OnLongClickListener() {
+        statuscard.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 if(!canpress) {
-                    return false;
+                    return;
                 }
                 else{
                     Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
@@ -202,16 +209,16 @@ public class NewMainActivity extends AppCompatActivity {
                     StoredValues.graphtypetobeshown = "none";
                     intent.putExtras(extras);
                     startActivity(intent);
-                    return true;
+                    return;
                 }
             }
         });
 
-        hourlygraph.setOnLongClickListener(new View.OnLongClickListener() {
+        hourlygraph.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 if(!canpress) {
-                    return false;
+                    return;
                 }
                 else{
                     Intent intent = new Intent(NewMainActivity.this,MainActivity.class);
@@ -225,16 +232,16 @@ public class NewMainActivity extends AppCompatActivity {
                     StoredValues.transferredbarchartdescription = "Hourly analysis of "+Returncurrentdate();
                     intent.putExtras(extras);
                     startActivity(intent);
-                    return true;
+                    return;
                 }
             }
         });
 
-        monthlygraph.setOnLongClickListener(new View.OnLongClickListener() {
+        monthlygraph.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 if(!canpress) {
-                    return false;
+                    return;
                 }
                 else{
                     Calendar cal = Calendar.getInstance();
@@ -252,16 +259,16 @@ public class NewMainActivity extends AppCompatActivity {
                     StoredValues.transferredbarchartdescription = "Monthly analysis of "+month+" "+cal.get(Calendar.YEAR);
                     intent.putExtras(extras);
                     startActivity(intent);
-                    return true;
+                    return;
                 }
             }
         });
 
-        yearlygraph.setOnLongClickListener(new View.OnLongClickListener() {
+        yearlygraph.setOnClickListener(new View.OnClickListener() {
             @Override
-            public boolean onLongClick(View v) {
+            public void onClick(View v) {
                 if(!canpress) {
-                    return false;
+                    return;
                 }
                 else{
                     Calendar cal = Calendar.getInstance();
@@ -278,7 +285,7 @@ public class NewMainActivity extends AppCompatActivity {
                     StoredValues.transferredbarchartdescription = "Yearly analysis of "+cal.get(Calendar.YEAR);
                     intent.putExtras(extras);
                     startActivity(intent);
-                    return true;
+                    return;
                 }
             }
         });
@@ -452,6 +459,7 @@ public class NewMainActivity extends AppCompatActivity {
                     BarData barData = new BarData(timelist, currentbarDataSet);
                     barChart.setData(barData);
                     //barChart.setDescription(descr);
+                    barChart.setDescription(null);
                     barChart.fitScreen();
                     barChart.setScaleEnabled(false);
                     barChart.setData(barData);
@@ -481,7 +489,7 @@ public class NewMainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(context,"Error occured, Data does not exist for today",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"invalid response: "+ new Gson().toJson(response).toString(),Toast.LENGTH_LONG).show();
                     return;
                 }
             }
@@ -646,6 +654,7 @@ public class NewMainActivity extends AppCompatActivity {
                 BarData barData = new BarData(daysOfMonth, currentbarDataSet);
                 barChart.setData(barData);
                 //barChart.setDescription(descr);
+                barChart.setDescription(null);
                 barChart.fitScreen();
                 barChart.setScaleEnabled(false);
                 barChart.setData(barData);
@@ -698,11 +707,12 @@ public class NewMainActivity extends AppCompatActivity {
     public void createrequestforyear(int year,BarChart barChart,String description)
     {
         String startdate,endate;
-        if(year == Integer.parseInt(MainActivity.returnapivalue("system start year",NewMainActivity.this)))    ///    for starting year of system
+        JSONparserclass parser = new JSONparserclass();
+        if(year == Integer.parseInt(parser.returnapivalue("system_start_year",NewMainActivity.this)))    ///    for starting year of system
         {
             ArrayList<String> yeardates = yearlydetails.datesofyear(year);
 
-            startdate = MainActivity.returnapivalue("system start date",NewMainActivity.this);
+            startdate = parser.returnapivalue("system_start_date",NewMainActivity.this);
             endate = yeardates.get(yeardates.size()-2);
 
             int numberofdays = findnumberofdaysforyear(yeardates,startdate,endate);
@@ -989,6 +999,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                 barChart.setData(barData);
                 //barChart.setDescription(descr);
+                barChart.setDescription(null);
                 barChart.fitScreen();
                 barChart.setScaleEnabled(false);
                 barChart.setData(barData);
@@ -1054,7 +1065,7 @@ public class NewMainActivity extends AppCompatActivity {
     {
         //final Call<LifetimeValues> lifetimeValues = SolarApi.getService().getLifetimeValues(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
 
-        final Call<WeeklyValues> lifetimeValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("system start date",context),Returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
+        final Call<WeeklyValues> lifetimeValues = SolarApi.getService(context).getValuesofWeek(MainActivity.returnapivalue("system_id",context),MainActivity.returnapivalue("system_start_date",context),Returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
 
         lifetimeValues.enqueue(new Callback<WeeklyValues>() {
             @RequiresApi(api = Build.VERSION_CODES.O)
@@ -1103,6 +1114,8 @@ public class NewMainActivity extends AppCompatActivity {
 
 
                 canpress=true;
+
+                loadingcircle.setVisibility(View.GONE);
 
                 Toast.makeText(NewMainActivity.this, "Updating completed...", Toast.LENGTH_SHORT).show();
 
