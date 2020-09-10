@@ -122,6 +122,14 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
+    // --------------------------------- for textviews under graphs ----------------------
+
+    TextView undergraphhourlyenergyproduced,undergraphhourlyunitsperkwp;
+    TextView undergraphmonthlyenergyproduced,undergraphmonthlyunitsperkwp;
+    TextView undergraphyearlyenergypeoduced,undergraphyearlyunitsperkwp;
+
+    // --------------------------------- for textviews under graphs ----------------------
+
 
 
     @Override
@@ -166,6 +174,17 @@ public class NewMainActivity extends AppCompatActivity {
         // --------------------------------- for status card ---------------------------------
 
 
+
+        // --------------------------------- for textviews under graphs ----------------------
+
+        undergraphhourlyenergyproduced = findViewById(R.id.undergraphhourlyenergyproduced);
+        undergraphhourlyunitsperkwp = findViewById(R.id.undergraphhourlyunitsperkwp);
+        undergraphmonthlyenergyproduced = findViewById(R.id.undergraphmonthlyenergyproduced);
+        undergraphmonthlyunitsperkwp = findViewById(R.id.undergraphmonthlyunitsperkwp);
+        undergraphyearlyenergypeoduced = findViewById(R.id.undergraphyearlyenergyproduced);
+        undergraphyearlyunitsperkwp = findViewById(R.id.undergraphyearlyunitsperkwp);
+
+        // --------------------------------- for textviews under graphs ----------------------
 
 
         aboutbutton = findViewById(R.id.about_button_main);
@@ -471,9 +490,10 @@ public class NewMainActivity extends AppCompatActivity {
                     barChart.getAxisLeft().setDrawLabels(false);
                     barChart.getAxisRight().setDrawLabels(false);
 
+
                     //Toast.makeText(NewMainActivity.this,"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
 
-                    String todaysvaluestring = ""+String.format("%.2f",hourlytotalvalue);                                           ////   energy produced today
+                    String todaysvaluestring = ""+String.format("%.0f",hourlytotalvalue);                                           ////   energy produced today
                     float todayavgvalue = hourlytotalvalue/49.7f;//todaysvalue / 49.7f;
 
                     String todaysavgvaluestring = ""+String.format("%.2f",todayavgvalue);                                   ////   units per kwp today
@@ -482,6 +502,9 @@ public class NewMainActivity extends AppCompatActivity {
 
                     todayenergy.setText(StoredValues.energyproducedtoday);
                     todayunitperkwp.setText(StoredValues.unitsperkwptoday);
+
+                    undergraphhourlyenergyproduced.setText(StoredValues.energyproducedtoday);
+                    undergraphhourlyunitsperkwp.setText(StoredValues.unitsperkwptoday);
 
 
                     createyearlygraph("Yearly",yearlygraph);
@@ -621,7 +644,7 @@ public class NewMainActivity extends AppCompatActivity {
 
 
                 float yesterdaysvalue = (valuesofweek.get(valuesofweek.size()-1))/1000;                      ////   energy produced yesterday
-                StoredValues.energyproducedyesterday = String.format("%.2f",yesterdaysvalue);
+                StoredValues.energyproducedyesterday = String.format("%.0f",yesterdaysvalue);
                 float yesterdaysavgvalue = (yesterdaysvalue/49.7f);                                   ////   units per kwp yesterday
                 StoredValues.unitsperkwpyesterday = String.format("%.2f",yesterdaysavgvalue);
 
@@ -631,11 +654,15 @@ public class NewMainActivity extends AppCompatActivity {
 
                 //String thismonthvaluevaluestring = tk + "." + tr;                                              ////   energy produced this month
                 float thismonthavgvalue = monthlytotalvalue / (49.7f*(valuesofweek.size()+1));
-                StoredValues.energyproducedthismonth = String.format("%.2f",monthlytotalvalue);                                      ////   units per kwp this month
+                StoredValues.energyproducedthismonth = String.format("%.0f",monthlytotalvalue);                                      ////   units per kwp this month
                 StoredValues.unitsperkwpthismonth = String.format("%.2f",thismonthavgvalue);
 
                 thismonthenergy.setText(StoredValues.energyproducedthismonth);
                 thismonthunitperkwp.setText(StoredValues.unitsperkwpthismonth);
+
+                undergraphmonthlyenergyproduced.setText(StoredValues.energyproducedthismonth);
+                undergraphmonthlyunitsperkwp.setText(StoredValues.unitsperkwpthismonth);
+
 
                 barentrymonthlygraph = barEntries;
 
@@ -974,12 +1001,14 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
-                StoredValues.energyproducedthisyear = ""+String.format("%.2f",yearlytotalvalue);                   /////   for this year
+                StoredValues.energyproducedthisyear = ""+String.format("%.0f",yearlytotalvalue);                   /////   for this year
                 StoredValues.unitsperkwpthisyear = ""+String.format("%.2f",(yearlytotalvalue / (49.7f*numberofdays/**numberofdays*/)));
 
                 thisyearenergy.setText(StoredValues.energyproducedthisyear);
                 thisyearunitperkwp.setText(StoredValues.unitsperkwpthisyear);
 
+                undergraphyearlyenergypeoduced.setText(StoredValues.energyproducedthisyear);
+                undergraphyearlyunitsperkwp.setText(StoredValues.unitsperkwpthisyear);
 
                 barentryyearlygraph = barEntries;
 
@@ -1010,6 +1039,7 @@ public class NewMainActivity extends AppCompatActivity {
                 barChart.getXAxis().setDrawLabels(false);
                 barChart.getAxisLeft().setDrawLabels(false);
                 barChart.getAxisRight().setDrawLabels(false);
+
 
 
 
@@ -1100,7 +1130,7 @@ public class NewMainActivity extends AppCompatActivity {
 
                 Integer lk = totallifetimevalue / 1000;
                 Integer lr = totallifetimevalue % 1000;
-                String lifetimevaluestring = lk + "." + lr;              ////   energy produced during lifetime
+                String lifetimevaluestring = lk+"";// + "." + lr;              ////   energy produced during lifetime
                 float lifetimeavgvalue = totallifetimevalue / (49.7f*numberofdayslifetime/**numberofdays*/);
                 int tmka = (int) lifetimeavgvalue / 1000;
                 int tmra = (int) lifetimeavgvalue % 1000;
@@ -1109,8 +1139,8 @@ public class NewMainActivity extends AppCompatActivity {
                 //StoredValues.unitsperkwplifetime = lifetimeavgvaluestring;
 
 
-                lifetimeenergy.setText(lifetimevaluestring);
-                lifetimeunitperkwp.setText(lifetimeavgvaluestring);
+                lifetimeenergy.setText(String.format("%.0f",((float)totallifetimevalue/ 1000)));
+                lifetimeunitperkwp.setText(String.format("%.2f",lifetimeavgvalue));
 
 
                 canpress=true;

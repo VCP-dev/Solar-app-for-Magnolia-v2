@@ -14,11 +14,11 @@
         android:layout_height="wrap_content">
 
         <TextView
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="8dp"
             android:layout_alignParentTop="true"
-            android:text="Solar app for Magnolia"
+            android:text="DASHBOARD"
             android:gravity="center_horizontal"
-            android:textSize="20dp"
+            android:textSize="22dp"
             android:textColor="#fff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -92,9 +92,35 @@
 
                         <com.github.mikephil.charting.charts.BarChart
                             android:id="@+id/hourlygraph"
-                            android:layout_weight="0.9"
+                            android:layout_weight="0.8"
                             android:layout_width="match_parent"
                             android:layout_height="0dp"/>
+
+                        <LinearLayout
+                            android:layout_weight="0.1"
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp">
+
+                            <TextView
+                                android:textSize="13dp"
+                                android:textColor="#000"
+                                android:gravity="center"
+                                android:id="@+id/undergraphhourlyenergyproduced"
+                                android:layout_weight="0.5"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                            <TextView
+                                android:textSize="13dp"
+                                android:textColor="#000"
+                                android:gravity="center"
+                                android:id="@+id/undergraphhourlyunitsperkwp"
+                                android:layout_weight="0.5"
+                                android:layout_width="0dp"
+                                android:layout_height="wrap_content"/>
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
@@ -147,9 +173,35 @@
 
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/monthlygraph"
-                        android:layout_weight="0.9"
+                        android:layout_weight="0.8"
                         android:layout_width="match_parent"
                         android:layout_height="0dp"/>
+
+                    <LinearLayout
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:textSize="13dp"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:id="@+id/undergraphmonthlyenergyproduced"
+                            android:layout_weight="0.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:textSize="13dp"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:id="@+id/undergraphmonthlyunitsperkwp"
+                            android:layout_weight="0.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -212,8 +264,34 @@
                     <com.github.mikephil.charting.charts.BarChart
                         android:id="@+id/yearlygraph"
                         android:layout_width="match_parent"
-                        android:layout_weight="0.9"
+                        android:layout_weight="0.8"
                         android:layout_height="0dp"/>
+
+                    <LinearLayout
+                        android:layout_weight="0.1"
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="0dp">
+
+                        <TextView
+                            android:textSize="13dp"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:id="@+id/undergraphyearlyenergyproduced"
+                            android:layout_weight="0.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                        <TextView
+                            android:textSize="13dp"
+                            android:textColor="#000"
+                            android:gravity="center"
+                            android:id="@+id/undergraphyearlyunitsperkwp"
+                            android:layout_weight="0.5"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"/>
+
+                    </LinearLayout>
 
                 </LinearLayout>
 
@@ -268,7 +346,7 @@
                             android:layout_gravity="center_vertical"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
-                            android:text="today"
+                            android:text="Today"
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
@@ -279,7 +357,7 @@
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
-                            android:text="yesterday"
+                            android:text="Yesterday"
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
@@ -290,7 +368,7 @@
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
-                            android:text="this month"
+                            android:text="This month"
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
@@ -311,7 +389,7 @@
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
-                            android:text="this year"
+                            android:text="This year"
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"
@@ -332,7 +410,7 @@
                             android:background="#F2F2F2"
                             android:textColor="#000"
                             android:layout_marginLeft="1dp"
-                            android:text="lifetime"
+                            android:text="Lifetime"
                             android:textSize="11dp"
                             android:layout_weight="0.14"
                             android:layout_width="match_parent"

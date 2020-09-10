@@ -250,11 +250,26 @@ public class EnergyFragment extends Fragment {
 
                     totalpowerproduced=totalvalue;
 
-                String name = typeoftab(tabLayout.getSelectedTabPosition());
-                if(name=="hour")
+                //String name = typeoftab(tabLayout.getSelectedTabPosition());
+                String name;
+                switch(StoredValues.graphtypetobeshown){
+                    case "hourly":
+                        name="day";
+                        break;
+                    case "monthly":
+                        name="month";
+                        break;
+                    case "yearly":
+                        name="year";
+                        break;
+                    default:
+                        name="day";
+                }
+
+                /*if(name=="hour")
                 {
                     name="day";
-                }
+                }*/
                 totalpower.setText("Power produced during entire "+(name)+" = "+totalpowerproduced + " kWh");//totalpower.setText("Total power produced : "+totalpowerproduced);
 
                 BarselectedY.setText("Details for "+barChart.getXAxis().getValues().get(e.getXIndex())+":");//BarselectedY.setText("Data for "+barChart.getXAxis().getValues().get(e.getXIndex())+":");
