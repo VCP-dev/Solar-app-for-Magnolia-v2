@@ -10,7 +10,6 @@ import android.graphics.Color;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -140,75 +139,146 @@ public class StatusFragment extends Fragment {
 
     public StatusFragment(String status,String energyproducedtoday,String unitsperkwptoday,String energyproducedyesterday,String unitsperkwpyesterday,String energyproducedthismonth,String unitsperkwpthismonth,String energyproducedlastmonth,String unitsperkwplastmonth,String energyproducedlifetime,String unitsperkwplifetime,String energyproducedthisyear,String unitsperkwpthisyear,String energyproducedlastyear,String unitsperkwplastyear)
     {
-        if(status!=null)
+        if(status!=null && energyproducedtoday!=null && unitsperkwptoday!=null && energyproducedyesterday!=null && unitsperkwpyesterday!=null && energyproducedthismonth!=null && unitsperkwpthismonth!=null && energyproducedlastmonth!=null && unitsperkwplastmonth!=null && energyproducedlifetime!=null && unitsperkwplifetime!=null && energyproducedthisyear!=null && unitsperkwpthisyear!=null && energyproducedlastyear!=null && unitsperkwplastyear!=null)
         {
             returnedvaluestatus = status;
+            returnedvalueenergyproduced = energyproducedtoday;            // today
+            returnedvalueunitsperkwp = unitsperkwptoday;
+            returnedenergyproducedyesterday = energyproducedyesterday;    // yesterday
+            returnedunitsperkwpyesterday = unitsperkwpyesterday;
+            returnedenergyproducedthismonth = energyproducedthismonth;    // this month
+            returnedunitsperkwpthismonth = unitsperkwpthismonth;
+            returnedenergyproducedlastmonth = energyproducedlastmonth;    // last month
+            returnedunitsperkwplastmonth = unitsperkwplastmonth;
+            returnedenergyproducedlifetime = energyproducedlifetime;      // lifetime
+            returnedunitsperkwplifetime = unitsperkwplifetime;
+            returnedenergyproducedthisyear = energyproducedthisyear;      // this year
+            returnedunitsperkwpthisyear = unitsperkwpthisyear;
+            returnedenergyproducedlastyear = energyproducedlastyear;      // last year
+            returnedunitsperkwplastyear = unitsperkwplastyear;
             valuespresent = true;
         }
+        else
+        {
+            valuespresent = false;
+        }
+        /*
         if(energyproducedtoday!=null)    // today
         {
             returnedvalueenergyproduced = energyproducedtoday;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwptoday!=null)
         {
             returnedvalueunitsperkwp = unitsperkwptoday;
             valuespresent = true;
         }
+        else
+        {
+            valuespresent = false;
+        }
         if(energyproducedyesterday!=null)    // yesterday
         {
             returnedenergyproducedyesterday = energyproducedyesterday;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwpyesterday!=null)
         {
             returnedunitsperkwpyesterday = unitsperkwpyesterday;
             valuespresent = true;
         }
+        else
+        {
+            valuespresent = false;
+        }
         if(energyproducedthismonth!=null)     //  this month
         {
             returnedenergyproducedthismonth = energyproducedthismonth;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwpthismonth!=null)
         {
             returnedunitsperkwpthismonth = unitsperkwpthismonth;
             valuespresent = true;
         }
+        else
+        {
+            valuespresent = false;
+        }
         if(energyproducedlastmonth!=null)     //  last month
         {
             returnedenergyproducedlastmonth = energyproducedlastmonth;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwplastmonth!=null)
         {
             returnedunitsperkwplastmonth = unitsperkwplastmonth;
             valuespresent = true;
         }
+        else
+        {
+            valuespresent = false;
+        }
         if(energyproducedlifetime!=null)      //   lifetime
         {
             returnedenergyproducedlifetime = energyproducedlifetime;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwplifetime!=null)
         {
             returnedunitsperkwplifetime = unitsperkwplifetime;
             valuespresent=true;
         }
+        else
+        {
+            valuespresent = false;
+        }
         if(energyproducedthisyear!=null)      //   this year
         {
             returnedenergyproducedthisyear = energyproducedthisyear;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwpthisyear!=null)
         {
             returnedunitsperkwpthisyear = unitsperkwpthisyear;
             valuespresent = true;
         }
+        else
+        {
+            valuespresent = false;
+        }
         if(energyproducedlastyear!=null)      //   last year
         {
             returnedenergyproducedlastyear = energyproducedlastyear;
             valuespresent = true;
+        }
+        else
+        {
+            valuespresent = false;
         }
         if(unitsperkwplastyear!=null)
         {
@@ -218,7 +288,7 @@ public class StatusFragment extends Fragment {
         else
         {
             valuespresent = false;
-        }
+        }*/
     }
 
 
@@ -502,6 +572,8 @@ public class StatusFragment extends Fragment {
                     unitsperkwplifetime.setTextSize(14);
 
 
+
+
                     for_today(getContext());
                     //getvaluesfortwomonths(getContext(),frontpagedetails.firstmonth.get(0),StoredValues.Todaysdate);
                 }
@@ -619,10 +691,12 @@ public class StatusFragment extends Fragment {
                 Integer lk = totallifetimevalue / 1000;
                 Integer lr = totallifetimevalue % 1000;
                 String lifetimevaluestring = lk + "." + lr;              ////   energy produced during lifetime
+                //String lifetimevaluestring = String.format("%.0f",(totallifetimevalue/1000));
                 float lifetimeavgvalue = totallifetimevalue / (49.7f*numberofdayslifetime/**numberofdays*/);
                 int tmka = (int) lifetimeavgvalue / 1000;
                 int tmra = (int) lifetimeavgvalue % 1000;
                 String lifetimeavgvaluestring = tmka + "." + tmra;         ////   units per kwp during lifetime
+                //String lifetimeavgvaluestring = String.format("%.2f",(lifetimeavgvalue/1000));
                 StoredValues.energyproducedliftime = lifetimevaluestring;
                 StoredValues.unitsperkwplifetime = lifetimeavgvaluestring;
 
@@ -661,16 +735,7 @@ public class StatusFragment extends Fragment {
         final int lastyear = thisyear-1;
 
         createrequestforyear(thisyear);
-        //createrequestforyear(lastyear);
-
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-
-                createrequestforyear(lastyear);
-
-            }
-        },790);
+        createrequestforyear(lastyear);
 
     }
 
@@ -741,7 +806,7 @@ public class StatusFragment extends Fragment {
     public void getyearlyvalues(final Context context, final String startdate, final String enddate, final ArrayList<String> yeardates, final int year, final int numberofdays)
     {
 
-        if(year==Calendar.getInstance().get(Calendar.YEAR)-1 && StoredValues.energyproducedlastyear!=null)
+        if(year==Calendar.getInstance().get(Calendar.YEAR)-1 && StoredValues.energyproducedlastyear!=null && StoredValues.unitsperkwplastyear!=null)
         {
             energyproducedlastyear.setText(StoredValues.energyproducedlastyear);
             unitsperkwplastyear.setText(StoredValues.unitsperkwplastyear);
@@ -763,7 +828,6 @@ public class StatusFragment extends Fragment {
                 //Toast.makeText(context,"year:"+year+" startdate:"+startdate+" enddate:"+enddate,Toast.LENGTH_LONG);//.show();
 
                 if(response.body() instanceof WeeklyValues) {
-
 
 
                     WeeklyValues values = response.body();
@@ -834,8 +898,11 @@ public class StatusFragment extends Fragment {
                         valuesforeachmonthinyear.set(j,curmonthvalue);
                         totalvalue+=curmonthvalue;
 
-                        StoredValues.energyproducedthisyear = ""+totalvalue;
-                        StoredValues.unitsperkwpthisyear = ""+(totalvalue / (49.7f*numberofdays/**numberofdays*/));
+
+                        StoredValues.energyproducedthisyear =""+String.format("%.0f",totalvalue);
+                        StoredValues.unitsperkwpthisyear =""+String.format("%.2f",(totalvalue / (49.7f*numberofdays/**numberofdays*/)));
+                        //StoredValues.energyproducedthisyear = ""+String.format("%.0f",totalvalue);
+                        //StoredValues.unitsperkwpthisyear = ""+String.format("%.2f",(totalvalue / (49.7f*numberofdays/**numberofdays*/)));
 
 
                         energyproducedthisyear.setText(StoredValues.energyproducedthisyear);
@@ -860,8 +927,11 @@ public class StatusFragment extends Fragment {
                         String thismonthavgvaluestring = tyka + "." + tyra;         ////   units per kwp last year
 
  */
-                        StoredValues.energyproducedlastyear =""+totalvalue;
-                        StoredValues.unitsperkwplastyear =""+(totalvalue / (49.7f*numberofdays/**numberofdays*/));
+
+                        StoredValues.energyproducedlastyear =""+String.format("%.0f",totalvalue);;
+                        StoredValues.unitsperkwplastyear =""+String.format("%.2f",(totalvalue / (49.7f*numberofdays/**numberofdays*/)));
+                        //StoredValues.energyproducedlastyear =""+String.format("%.0f",totalvalue);
+                        //StoredValues.unitsperkwplastyear =""+String.format("%.2f",(totalvalue / (49.7f*numberofdays/**numberofdays*/)));
 
 
                         energyproducedlastyear.setText(StoredValues.energyproducedlastyear);
@@ -990,6 +1060,7 @@ public class StatusFragment extends Fragment {
 
                     List<Integer> ValuesofTwoMonths = ValuesTM.getProduction();
 
+                    
                     //float totalsizeoftwomonths = ValuesofTwoMonths.size();
                     int totalsizeoftwomonths = ValuesofTwoMonths.size();
 
@@ -1000,7 +1071,7 @@ public class StatusFragment extends Fragment {
                     Integer sumoflastmonth = 0;
                     int i=0;
 
-                   // try {
+                    try {
                         for (i = 0; i < firstmonthsize; i+=1) {
                             try {
                                 sumoflastmonth += (ValuesofTwoMonths.get(i));
@@ -1023,11 +1094,13 @@ public class StatusFragment extends Fragment {
                         if(StoredValues.energyproducedlastmonth==null && StoredValues.unitsperkwplastmonth==null) {
                             Integer lmk = sumoflastmonth / 1000;
                             Integer lmr = sumoflastmonth % 1000;
-                            String lastmonthvaluestring = lmk + "." + lmr;              ////  energy produced last month
+                            //String lastmonthvaluestring = lmk + "." + lmr;              ////  energy produced last month
+                            String lastmonthvaluestring = String.format("%.0f",((float)sumoflastmonth/1000));
                             float lastmonthavgvalue = sumoflastmonth / (49.7f*firstmonthsize);
                             int lmka = (int) lastmonthavgvalue / 1000;
                             int lmra = (int) lastmonthavgvalue % 1000;
-                            String lastmonthavgvaluestring = lmka + "." + lmra;         ////   units per kwp last month
+                            //String lastmonthavgvaluestring = lmka + "." + lmra;         ////   units per kwp last month
+                            String lastmonthavgvaluestring = String.format("%.2f",((float)lastmonthavgvalue)/1000);
                             StoredValues.energyproducedlastmonth = lastmonthvaluestring;
                             StoredValues.unitsperkwplastmonth = lastmonthavgvaluestring;
                             Log.println(Log.INFO, "First month", "First month done i=" + i);
@@ -1037,7 +1110,7 @@ public class StatusFragment extends Fragment {
                         Integer sumofthismonth = 0;
                         if(StoredValues.energyproducedlastmonth==null && StoredValues.unitsperkwplastmonth==null){
 
-                            for (/*int i = frontpagedetails.firstmonth.size()*/; i < totalsizeoftwomonths; i++) {
+                            for (; i < totalsizeoftwomonths; i++) {
                                     try {
                                         sumofthismonth += (ValuesofTwoMonths.get(i));
                                     } catch (Exception ex) {
@@ -1076,53 +1149,57 @@ public class StatusFragment extends Fragment {
                         Integer tmr = sumofthismonth % 1000;
 
 
-                        String thismonthvaluestring = tmk + "." + tmr;              ////   energy produced this month
+                        //String thismonthvaluestring = tmk + "." + tmr;              ////   energy produced this month
+                        String thismonthvaluestring = String.format("%.0f",((float)sumofthismonth/1000));
                         float thismonthavgvalue = sumofthismonth / (49.7f*secondmonthsize);
                         int tmka = (int) thismonthavgvalue / 1000;
                         int tmra = (int) thismonthavgvalue % 1000;
-                        String thismonthavgvaluestring = tmka + "." + tmra;         ////   units per kwp this month
+                        //String thismonthavgvaluestring = tmka + "." + tmra;         ////   units per kwp this month
+                        String thismonthavgvaluestring = String.format("%.2f",((float)thismonthavgvalue/1000));
                         StoredValues.energyproducedthismonth = thismonthvaluestring;
                         StoredValues.unitsperkwpthismonth = thismonthavgvaluestring;
                         Log.println(Log.INFO,"Second Month","Second month done i="+i);
 
-                    /*
-                        float todaysvalue = (float) (ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2)) / 1000.0f;
-                        Integer tk = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2) / 1000;
-                        Integer tr = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2) % 1000;
-                        String todaysvaluestring = tk + "." + tr;                                              ////   energy produced today
-                        float todayavgvalue = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2) / 49.7f;
-                        int tka = (int) todayavgvalue / 1000;
-                        int tra = (int) todayavgvalue % 1000;
-                        String todaysavgvaluestring = tka + "." + tra;                                     ////   units per kwp today
-                        StoredValues.energyproducedtoday = todaysvaluestring;
-                        StoredValues.unitsperkwptoday = todaysavgvaluestring;
+
+                    //    float todaysvalue = (float) (ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2)) / 1000.0f;
+                    //    Integer tk = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2) / 1000;
+                    //    Integer tr = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2) % 1000;
+                    //    String todaysvaluestring = tk + "." + tr;                                              ////   energy produced today
+                    //    float todayavgvalue = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 2) / 49.7f;
+                    //    int tka = (int) todayavgvalue / 1000;
+                    //    int tra = (int) todayavgvalue % 1000;
+                    //    String todaysavgvaluestring = tka + "." + tra;                                     ////   units per kwp today
+                    //    StoredValues.energyproducedtoday = todaysvaluestring;
+                    //    StoredValues.unitsperkwptoday = todaysavgvaluestring;
 
 
-                     */
+
                         if(StoredValues.energyproducedyesterday==null && StoredValues.unitsperkwpyesterday==null) {
                             float yesterdaysvalue = (float) (ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 1)) / 1000.0f;
                             Integer yk = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 1) / 1000;
                             Integer yr = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 1) % 1000;
-                            String yesterdaysvaluestring = yk + "." + yr;                                           ////   energy produced yesterday
+                            //String yesterdaysvaluestring = yk + "." + yr;                                           ////   energy produced yesterday
+                            String yesterdaysvaluestring = String.format("%.0f",(yesterdaysvalue/1000));
                             float yesterdayavgvalue = ValuesofTwoMonths.get(ValuesofTwoMonths.size() - 1) / 49.7f;
                             int yka = (int) yesterdayavgvalue / 1000;
                             int yra = (int) yesterdayavgvalue % 1000;
-                            String yesterdaysavgvaluestring = yka + "." + yra;                                  ////   units per kwp yesterday
+                            //String yesterdaysavgvaluestring = yka + "." + yra;                                  ////   units per kwp yesterday
+                            String yesterdaysavgvaluestring = String.format("%.2f",(yesterdayavgvalue/1000));
                             StoredValues.energyproducedyesterday = yesterdaysvaluestring;
                             StoredValues.unitsperkwpyesterday = yesterdaysavgvaluestring;
                         }
 
-                    /*
-
-                        energyproduced.setText(StoredValues.energyproducedtoday);
-                        unitsperkwp.setText(StoredValues.unitsperkwptoday);
-                        energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                        energyproduced.setTextColor(Color.parseColor("#000000"));
-                        unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
-                        unitsperkwp.setTextColor(Color.parseColor("#000000"));
 
 
-                     */
+                     //   energyproduced.setText(StoredValues.energyproducedtoday);
+                     //   unitsperkwp.setText(StoredValues.unitsperkwptoday);
+                     //   energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                     //   energyproduced.setTextColor(Color.parseColor("#000000"));
+                     //   unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
+                     //   unitsperkwp.setTextColor(Color.parseColor("#000000"));
+
+
+
 
                         energyproducedyesterday.setText(StoredValues.energyproducedyesterday);
                         unitsperkwpyesterday.setText(StoredValues.unitsperkwpyesterday);
@@ -1148,8 +1225,8 @@ public class StatusFragment extends Fragment {
                         unitsperkwplastmonth.setTextColor(Color.parseColor("#000000"));
 
 
-                        energyupdatebuttonpressed = false;
-                   /* }
+                        //energyupdatebuttonpressed = false;
+                    }
                     catch(Exception ex)
                     {
                         Log.e("exception thrown",ex.getMessage());
@@ -1194,7 +1271,7 @@ public class StatusFragment extends Fragment {
                         unitsperkwplastmonth.setTextColor(oldColors);
                         energyproducedlastmonth.setTextSize(14);
                         unitsperkwplastmonth.setTextSize(14);
-                    }*/
+                    }
 
                 }
                 else
@@ -1219,7 +1296,7 @@ public class StatusFragment extends Fragment {
         });
         //getdata(context);
 
-        getlifetimevalues(context);
+        //getlifetimevalues(context);
         getvaluesfortwoyears(context);
     }
 
@@ -1383,42 +1460,94 @@ public class StatusFragment extends Fragment {
     private void for_today(final Context context)
     {
         Snackbar.make(getView(),"Updating page with latest data....",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
+
+        Log.e("Entering today","Entered function for today and making call");
+
         Call<SummaryOfDay> summaryOfDay = SolarApi.getService(context).getSummaryOfToday(MainActivity.returnapivalue("system_id",context),returncurrentdate(),MainActivity.returnapivalue("apikey",context),MainActivity.returnapivalue("user_id",context));
         summaryOfDay.enqueue(new Callback<SummaryOfDay>() {
             @Override
             public void onResponse(Call<SummaryOfDay> call, Response<SummaryOfDay> response) {
 
-                SummaryOfDay today = response.body();
+                if(response.isSuccessful()){
+                    Log.i("PROVARETROFIT","OK");
+                    }
 
-                Integer todaysvalue = today.getEnergyToday();
-                Integer tk = todaysvalue / 1000;
-                Integer tr = todaysvalue % 1000;
-                String todaysvaluestring = tk + "." + tr;                                              ////   energy produced today
-                float todayavgvalue = todaysvalue / 49.7f;
-                int tka = (int) todayavgvalue / 1000;
-                int tra = (int) todayavgvalue % 1000;
-                String todaysavgvaluestring = tka + "." + tra;                                     ////   units per kwp today
-                StoredValues.energyproducedtoday = todaysvaluestring;
-                StoredValues.unitsperkwptoday = todaysavgvaluestring;
+                    SummaryOfDay today = response.body();
+
+                    String systemstatus = today.getStatus();
+
+                    sysstatus.setText("System status: " + systemstatus);
+                    StoredValues.SystemStatus = "System status: " + systemstatus;
+
+                    if(systemstatus.contentEquals("normal"))
+                    {
+                        sysstatus.setTextColor(Color.parseColor("#2AE016"));
+                    }
+
+                    Integer todaysvalue = today.getEnergyToday();
+                    Integer tk = todaysvalue / 1000;
+                    Integer tr = todaysvalue % 1000;
+                    //String todaysvaluestring = tk + "." + tr;                                              ////   energy produced today
+                    String todaysvaluestring = String.format("%.0f", ((float)todaysvalue / 1000));
+                    float todayavgvalue = todaysvalue / 49.7f;
+                    int tka = (int) todayavgvalue / 1000;
+                    int tra = (int) todayavgvalue % 1000;
+                    //String todaysavgvaluestring = tka + "." + tra;                                     ////   units per kwp today
+                    String todaysavgvaluestring = String.format("%.2f", (todayavgvalue / 1000));
+                    StoredValues.energyproducedtoday = todaysvaluestring;
+                    StoredValues.unitsperkwptoday = todaysavgvaluestring;
 
 
-                energyproduced.setText(StoredValues.energyproducedtoday);
-                unitsperkwp.setText(StoredValues.unitsperkwptoday);
-                energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
-                energyproduced.setTextColor(Color.parseColor("#000000"));
-                unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_DIP,15);
-                unitsperkwp.setTextColor(Color.parseColor("#000000"));
+                    energyproduced.setText(StoredValues.energyproducedtoday);
+                    unitsperkwp.setText(StoredValues.unitsperkwptoday);
+                    energyproduced.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+                    energyproduced.setTextColor(Color.parseColor("#000000"));
+                    unitsperkwp.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+                    unitsperkwp.setTextColor(Color.parseColor("#000000"));
 
 
-                getvaluesfortwomonths(getContext(),frontpagedetails.firstmonth.get(0),StoredValues.Todaysdate);
+                    try {
 
-            }
+                        Integer lifetimevalue = today.getEnergyLifetime();
+                        String lifetimevaluestring = String.format("%.0f", ((float)lifetimevalue / 1000));
+                        String startdate = JSONparserclass.returnapivalue("system_start_date", context);
+                        String todaysdate = returncurrentdate();
+                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
-            @Override
-            public void onFailure(Call<SummaryOfDay> call, Throwable t) {
-                Snackbar.make(getView(),"Error in receiving values please check internet connection",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
-            }
-        });
+
+                        Date firstDate = format.parse(startdate);
+                        Date todaysDate = format.parse(todaysdate);
+                        long difference = todaysDate.getTime() - firstDate.getTime();
+                        float numberofDays = (difference / (1000 * 60 * 60 * 24));
+
+                        float lifetimeavgvalue = lifetimevalue / (49.7f * numberofDays);
+                        String lifetimeavgvaluestring = String.format("%.2f", (lifetimeavgvalue / 1000));
+
+                        StoredValues.energyproducedliftime = lifetimevaluestring;
+                        StoredValues.unitsperkwplifetime = lifetimeavgvaluestring;
+
+                        energyproducedlifetime.setText(StoredValues.energyproducedliftime);
+                        unitsperkwplifetime.setText(StoredValues.unitsperkwplifetime);
+                        energyproducedlifetime.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+                        energyproducedlifetime.setTextColor(Color.parseColor("#000000"));
+                        unitsperkwplifetime.setTextSize(TypedValue.COMPLEX_UNIT_DIP, 15);
+                        unitsperkwplifetime.setTextColor(Color.parseColor("#000000"));
+                    } catch (Exception ex) {
+                        Toast.makeText(context, ex.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+
+
+
+                    getvaluesfortwomonths(getContext(), frontpagedetails.firstmonth.get(0), StoredValues.Todaysdate);
+
+                }
+
+                @Override
+                public void onFailure(Call<SummaryOfDay> call, Throwable t) {
+                    Snackbar.make(getView(), "Error in receiving values please check internet connection", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                }
+            });
+
     }
 
 

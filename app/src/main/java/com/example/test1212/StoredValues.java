@@ -22,7 +22,7 @@ public class StoredValues {
 
     public static String transferredbarchartdescription;
 
-    public static float transferredtotalvalue=0;
+    public static String transferredtotalvalue;
 
     // ------ for graph data which is transferred ------------
 

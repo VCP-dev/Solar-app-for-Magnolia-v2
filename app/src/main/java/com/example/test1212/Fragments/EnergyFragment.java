@@ -77,6 +77,9 @@ public class EnergyFragment extends Fragment {
     Button selectweek;
 
 
+    TextView TypeofAnalysis;
+
+
     TextView barselectedvalue;
     TextView Barselectedavgvalue;
     TextView BarselectedY;
@@ -205,6 +208,8 @@ public class EnergyFragment extends Fragment {
 
         selectweek = v.findViewById(R.id.setweekbutton);
 
+        TypeofAnalysis = v.findViewById(R.id.TypeofAnalysis);
+
         totalpower = v.findViewById(R.id.totalpower);
         barselectedvalue = v.findViewById(R.id.barselectedvalue);
         Barselectedavgvalue = v.findViewById(R.id.barselectedavgvalue);
@@ -270,27 +275,41 @@ public class EnergyFragment extends Fragment {
                 {
                     name="day";
                 }*/
-                totalpower.setText("Power produced during entire "+(name)+" = "+totalpowerproduced + " kWh");//totalpower.setText("Total power produced : "+totalpowerproduced);
+                //totalpower.setText("Power produced during entire "+(name)+" = "+totalpowerproduced + " kWh");//totalpower.setText("Total power produced : "+totalpowerproduced);
 
                 BarselectedY.setText("Details for "+barChart.getXAxis().getValues().get(e.getXIndex())+":");//BarselectedY.setText("Data for "+barChart.getXAxis().getValues().get(e.getXIndex())+":");
 
-                final String selectedValue=String.valueOf(e.getVal());
+                //final String selectedValue=String.valueOf(e.getVal());
+                /*final String selectedValue = String.format("%.0f",e.getVal());
                 barselectedvalue.setText(selectedValue+" kWh");//barselectedvalue.setText("Power generated : "+selectedValue);
+                 */
+
 
                 float avgvalue;
+
+                final String selectedValue;
 
                 switch (name){
 
                     case "day":
-                    case "month":
+                        selectedValue = String.format("%.2f",e.getVal());
+                        barselectedvalue.setText(selectedValue+" kWh");
                         avgvalue = Float.parseFloat(selectedValue)/49.7f;
-                        Barselectedavgvalue.setText(""+avgvalue);//Barselectedavgvalue.setText("Units/kWP : "+avgvalue);
+                        Barselectedavgvalue.setText(""+String.format("%.2f",avgvalue));
+                        break;
+                    case "month":
+                        selectedValue = String.format("%.0f",e.getVal());
+                        barselectedvalue.setText(selectedValue+" kWh");
+                        avgvalue = Float.parseFloat(selectedValue)/49.7f;
+                        Barselectedavgvalue.setText(""+String.format("%.2f",avgvalue));//Barselectedavgvalue.setText("Units/kWP : "+avgvalue);
                         break;
 
                     case "year":
+                        selectedValue = String.format("%.0f",e.getVal());
+                        barselectedvalue.setText(selectedValue+" kWh");
                         int numberofdays = numberofdaysofmonth(barChart.getXAxis().getValues().get(e.getXIndex()),yeartocheckwith);
                         avgvalue = Float.parseFloat(selectedValue)/(49.7f*numberofdays);
-                        Barselectedavgvalue.setText(""+avgvalue);//Barselectedavgvalue.setText("Units/kWP : "+avgvalue);
+                        Barselectedavgvalue.setText(""+String.format("%.2f",avgvalue));//Barselectedavgvalue.setText("Units/kWP : "+avgvalue);
                         break;
                 }
              //   float avgvalue = Float.parseFloat(selectedValue)/49.7f;
@@ -300,7 +319,7 @@ public class EnergyFragment extends Fragment {
 
             @Override
             public void onNothingSelected() {
-                totalpower.setText("No data...");
+                //totalpower.setText("No data...");
                 BarselectedY.setText("No date selected...");
                 barselectedvalue.setText("No data...");
                 Barselectedavgvalue.setText("No data...");
@@ -334,9 +353,9 @@ public class EnergyFragment extends Fragment {
 
 
 
-        /// ------------------------ since the graph is chosen through the new main activity, we're just leaving the tab layout invisible for now
-        tabLayout.setVisibility(View.INVISIBLE);
-        /// ------------------------ since the graph is chosen through the new main activity, we're just leaving the tab layout invisible for now
+        /// ------------------------ since the graph is chosen through the new main activity, we're removing the tab layout for now
+        tabLayout.setVisibility(View.GONE);
+        /// ------------------------ since the graph is chosen through the new main activity, we're removing the tab layout for now
 
 
 
@@ -433,13 +452,21 @@ public class EnergyFragment extends Fragment {
         switch(StoredValues.graphtypetobeshown){
             case "monthly":
                 changegraph(1);
+                TypeofAnalysis.setText("Monthly analysis");
+                Calendar calendar = Calendar.getInstance();
+                totalpower.setText("Power produced during " + monthname(calendar.get(Calendar.MONTH)) +" "+calendar.get(Calendar.YEAR) + " = " + StoredValues.transferredtotalvalue + " kWh");
                 break;
             case "yearly":
                 changegraph(2);
+                TypeofAnalysis.setText("Yearly analysis");
+                Calendar calendar1 = Calendar.getInstance();
+                totalpower.setText("Power produced during " + calendar1.get(Calendar.YEAR) + " = " + StoredValues.transferredtotalvalue + " kWh");
                 break;
             case "hourly":
             default:
                 changegraph(0);
+                TypeofAnalysis.setText("Hourly analysis");
+                totalpower.setText("Power produced during "+Returncurrentdatediffformat()+" = "+StoredValues.transferredtotalvalue + " kWh");
                 break;
         }
 
@@ -449,7 +476,7 @@ public class EnergyFragment extends Fragment {
         barChart.fitScreen();
 
 
-        totalvalue = StoredValues.transferredtotalvalue;
+        totalvalue = Float.parseFloat(StoredValues.transferredtotalvalue);
 
 
         return v;
@@ -563,6 +590,52 @@ public class EnergyFragment extends Fragment {
         return monthnum;
     }
 
+    String monthname(int month)
+    {
+        String monthnum="";
+        switch(month)
+        {
+            case 0:
+                monthnum = "January";
+                break;
+            case 1:
+                monthnum = "Febuary";
+                break;
+            case 2:
+                monthnum = "March";
+                break;
+            case 3:
+                monthnum = "April";
+                break;
+            case 4:
+                monthnum = "May";
+                break;
+            case 5:
+                monthnum = "June";
+                break;
+            case 6:
+                monthnum = "July";
+                break;
+            case 7:
+                monthnum = "August";
+                break;
+            case 8:
+                monthnum = "September";
+                break;
+            case 9:
+                monthnum = "October";
+                break;
+            case 10:
+                monthnum = "November";
+                break;
+            case 11:
+                monthnum = "December";
+                break;
+        }
+        return monthnum;
+
+    }
+
     private String typeoftab(int pos)
     {
         String res="";
@@ -624,6 +697,14 @@ public class EnergyFragment extends Fragment {
         }
     }
 
+    public String Returncurrentdatediffformat()
+    {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        String curdate = dateFormat.format(calendar.getTime());
+        return curdate;
+    }
+
 
 
 
@@ -654,7 +735,7 @@ public class EnergyFragment extends Fragment {
     }
 
 
-    private void getHourlyValues(final Context context, String description, final String starttime, final String endtime,String date)
+    private void getHourlyValues(final Context context, String description, final String starttime, final String endtime,final String date)
     {
         Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         //Toast.makeText(getContext(), "starttime: " + starttime + " || endtime: " + endtime, Toast.LENGTH_LONG).show();
@@ -711,7 +792,14 @@ public class EnergyFragment extends Fragment {
                     barChart.setData(barData);
                     barChart.setDescription(descr);
                     barChart.fitScreen();
-                    totalpower.setText("No data...");
+                    try {
+                        Date selecteddate = new SimpleDateFormat("yyyy-MM-dd").parse(date);
+                        String newdate = new SimpleDateFormat("dd-MM-yyyy").format(selecteddate);
+                        totalpower.setText("Power produced during " + newdate + " = " + String.format("%.0f", totalvalue) + " kWh");
+                    }
+                    catch(Exception ex){
+                        totalpower.setText("Power produced during selected day = " + String.format("%.0f", totalvalue) + " kWh");
+                    }
                     BarselectedY.setText("No date selected...");
                     barselectedvalue.setText("No data...");
                     Barselectedavgvalue.setText("No data...");
@@ -959,7 +1047,15 @@ public class EnergyFragment extends Fragment {
                         barChart.setData(barData);
                         barChart.setDescription(descr);
                         barChart.fitScreen();
-                        totalpower.setText("No data...");
+                        try {
+                            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startdate);
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTime(date);
+                            totalpower.setText("Power produced during " + monthname(cal.get(Calendar.MONTH)) +" "+cal.get(Calendar.YEAR) + " = " + String.format("%.0f",totalvalue) + " kWh");
+                        }
+                        catch(Exception ex){
+                            totalpower.setText("Power produced during selected month = " + String.format("%.0f",totalvalue) + " kWh");
+                        }
                         BarselectedY.setText("No date selected...");
                         barselectedvalue.setText("No data...");
                         Barselectedavgvalue.setText("No data...");
@@ -1116,7 +1212,15 @@ public class EnergyFragment extends Fragment {
                         barChart.setData(barData);
                         barChart.setDescription(descr);
                         barChart.fitScreen();
-                        totalpower.setText("No data...");
+                        try {
+                            Date date = new SimpleDateFormat("yyyy-MM-dd").parse(startdate);
+                            Calendar cal = Calendar.getInstance();
+                            cal.setTime(date);
+                            totalpower.setText("Power produced during " + cal.get(Calendar.YEAR) + " = " + String.format("%.0f",totalvalue) + " kWh");
+                        }
+                        catch(Exception ex){
+                            totalpower.setText("Power produced during entire year = " + String.format("%.0f",totalvalue) + " kWh");
+                        }
                         BarselectedY.setText("No date selected...");
                         barselectedvalue.setText("No data...");
                         Barselectedavgvalue.setText("No data...");

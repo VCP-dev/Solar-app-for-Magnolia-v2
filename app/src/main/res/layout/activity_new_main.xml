@@ -82,8 +82,8 @@
                         android:layout_height="match_parent">
 
                         <TextView
+                            android:id="@+id/hourlygraphtitle"
                             android:textColor="#000"
-                            android:text="Hourly Output"
                             android:textSize="16dp"
                             android:gravity="center"
                             android:layout_weight="0.1"
@@ -163,8 +163,8 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/monthlygraphtitle"
                         android:textColor="#000"
-                        android:text="Monthly Output"
                         android:textSize="16dp"
                         android:gravity="center"
                         android:layout_weight="0.1"
@@ -253,8 +253,8 @@
                     android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/yearlygraphtitle"
                         android:textColor="#000"
-                        android:text="Yearly Output"
                         android:textSize="16dp"
                         android:gravity="center"
                         android:layout_weight="0.1"

@@ -53,6 +53,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
+import static com.example.test1212.BarChartOperations.hourlydetails.returncurrentdate;
+
 public class NewMainActivity extends AppCompatActivity {
 
 
@@ -132,6 +134,18 @@ public class NewMainActivity extends AppCompatActivity {
 
 
 
+
+
+    // --------------------------------- for textviews above graphs ----------------------
+
+    TextView hourlygraphtitle;
+    TextView monthlygraphtitle;
+    TextView yearlygraphtitle;
+
+    // --------------------------------- for textviews above graphs ----------------------
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -185,6 +199,29 @@ public class NewMainActivity extends AppCompatActivity {
         undergraphyearlyunitsperkwp = findViewById(R.id.undergraphyearlyunitsperkwp);
 
         // --------------------------------- for textviews under graphs ----------------------
+
+
+
+
+        // --------------------------------- for textviews above graphs ----------------------
+
+        hourlygraphtitle = findViewById(R.id.hourlygraphtitle);
+        monthlygraphtitle = findViewById(R.id.monthlygraphtitle);
+        yearlygraphtitle = findViewById(R.id.yearlygraphtitle);
+
+        // --------------------------------- for textviews above graphs ----------------------
+
+
+
+
+        hourlygraphtitle.setText(Returncurrentdatediffformat());
+
+        Calendar cal = Calendar.getInstance();
+        yearlygraphtitle.setText(""+cal.get(Calendar.YEAR));
+        monthlygraphtitle.setText(monthname(cal.get(Calendar.MONTH))+" "+cal.get(Calendar.YEAR));
+
+
+
 
 
         aboutbutton = findViewById(R.id.about_button_main);
@@ -244,7 +281,7 @@ public class NewMainActivity extends AppCompatActivity {
                     Bundle extras = new Bundle();
                     extras.putString("fragmentname","energy");
                     extras.putString("typeofenergyfragment","hourly");
-                    StoredValues.transferredtotalvalue = hourlytotalvalue;
+                    StoredValues.transferredtotalvalue = String.format("%.0f",hourlytotalvalue);
                     StoredValues.graphtypetobeshown = "hourly";
                     StoredValues.transferredbardata = bardatahourly;
                     //StoredValues.transferredbarentries = barenetryhourlygraph;
@@ -271,7 +308,7 @@ public class NewMainActivity extends AppCompatActivity {
                     Bundle extras = new Bundle();
                     extras.putString("fragmentname","energy");
                     extras.putString("typeofenergyfragment","monthly");
-                    StoredValues.transferredtotalvalue = monthlytotalvalue;
+                    StoredValues.transferredtotalvalue = String.format("%.0f",monthlytotalvalue);
                     StoredValues.graphtypetobeshown = "monthly";
                     StoredValues.transferredbardata = bardatamonthly;
                     //StoredValues.transferredbarentries = barentrymonthlygraph;
@@ -297,7 +334,7 @@ public class NewMainActivity extends AppCompatActivity {
                     Bundle extras = new Bundle();
                     extras.putString("fragmentname","energy");
                     extras.putString("typeofenergyfragment","yearly");
-                    StoredValues.transferredtotalvalue=yearlytotalvalue;
+                    StoredValues.transferredtotalvalue=String.format("%.0f",yearlytotalvalue);
                     StoredValues.graphtypetobeshown = "yearly";
                     //StoredValues.transferredbarentries = barentryyearlygraph;
                     StoredValues.transferredbardata = bardatayearly;
@@ -344,10 +381,10 @@ public class NewMainActivity extends AppCompatActivity {
         switch(month)
         {
             case 0:
-                monthnum = "Jan";
+                monthnum = "January";
                 break;
             case 1:
-                monthnum = "Feb";
+                monthnum = "Febuary";
                 break;
             case 2:
                 monthnum = "March";
@@ -365,19 +402,19 @@ public class NewMainActivity extends AppCompatActivity {
                 monthnum = "July";
                 break;
             case 7:
-                monthnum = "Aug";
+                monthnum = "August";
                 break;
             case 8:
-                monthnum = "Sep";
+                monthnum = "September";
                 break;
             case 9:
-                monthnum = "Oct";
+                monthnum = "October";
                 break;
             case 10:
-                monthnum = "Nov";
+                monthnum = "November";
                 break;
             case 11:
-                monthnum = "Dec";
+                monthnum = "December";
                 break;
         }
         return monthnum;
@@ -512,14 +549,16 @@ public class NewMainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(context,"invalid response: "+ new Gson().toJson(response).toString(),Toast.LENGTH_LONG).show();
+                    Toast.makeText(context,"Could not get hourly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"invalid response: "+ new Gson().toJson(response).toString(),Toast.LENGTH_LONG).show();
                     return;
                 }
             }
 
             @Override
             public void onFailure(Call<HourlyValues> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get hourly values",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Error occured, Could not get hourly values",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Could not get hourly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
                 //Toast.makeText(context,t.getMessage(),Toast.LENGTH_LONG).show();
             }
         });
@@ -592,14 +631,16 @@ public class NewMainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
                     return;
                 }
             }
 
             @Override
             public void onFailure(Call<WeeklyValues> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -701,7 +742,8 @@ public class NewMainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SummaryOfDay> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -899,7 +941,8 @@ public class NewMainActivity extends AppCompatActivity {
 
                     ///   this portion of code should technically never occur but just in case, to check if the object recieved isn't of the required type
 
-                    Toast.makeText(context,"Error occured, Values not avalaible",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"Could not get yearly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
+                    //Toast.makeText(context,"Error occured, Values not avalaible",Toast.LENGTH_SHORT).show();
                     return;
                 }
 
@@ -907,7 +950,8 @@ public class NewMainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<WeeklyValues> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get yearly values",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Error occured, Could not get yearly values",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Could not get yearly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -1052,7 +1096,8 @@ public class NewMainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<SummaryOfDay> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get yearly values",Toast.LENGTH_SHORT).show();
+                //Toast.makeText(context,"Error occured, Could not get yearly values",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Could not get yearly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -1140,7 +1185,7 @@ public class NewMainActivity extends AppCompatActivity {
 
 
                 lifetimeenergy.setText(String.format("%.0f",((float)totallifetimevalue/ 1000)));
-                lifetimeunitperkwp.setText(String.format("%.2f",lifetimeavgvalue));
+                lifetimeunitperkwp.setText(String.format("%.2f",(lifetimeavgvalue/1000)));
 
 
                 canpress=true;
@@ -1153,7 +1198,7 @@ public class NewMainActivity extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<WeeklyValues> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get lifetime values",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"Could not get lifetime values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -1179,6 +1224,14 @@ public class NewMainActivity extends AppCompatActivity {
     {
         Calendar calendar = Calendar.getInstance();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        String curdate = dateFormat.format(calendar.getTime());
+        return curdate;
+    }
+
+    public String Returncurrentdatediffformat()
+    {
+        Calendar calendar = Calendar.getInstance();
+        DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
         String curdate = dateFormat.format(calendar.getTime());
         return curdate;
     }

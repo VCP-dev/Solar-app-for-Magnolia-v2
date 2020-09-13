@@ -11,12 +11,13 @@
         <androidx.appcompat.widget.Toolbar
             android:background="@color/colorPrimary"
             android:layout_width="match_parent"
-            android:layout_height="37dp">
+            android:layout_height="43dp">
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/TypeofAnalysis"
                     android:layout_alignParentLeft="true"
                     android:textStyle="bold"
                     android:paddingTop="5dp"
