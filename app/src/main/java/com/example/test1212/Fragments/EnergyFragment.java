@@ -1543,7 +1543,8 @@ public class EnergyFragment extends Fragment {
                 barChart.setData(barData);
                 barChart.setDescription(descr);
                 barChart.fitScreen();
-                totalpower.setText("No data...");
+                Calendar cal = Calendar.getInstance();
+                totalpower.setText("Power produced during " + monthname(cal.get(Calendar.MONTH)) +" "+cal.get(Calendar.YEAR) + " = " + String.format("%.0f",totalvalue) + " kWh");
                 BarselectedY.setText("No date selected...");
                 barselectedvalue.setText("No data...");
                 Barselectedavgvalue.setText("No data...");
@@ -1646,7 +1647,9 @@ public class EnergyFragment extends Fragment {
                 barChart.setData(barData);
                 barChart.setDescription(descr);
                 barChart.fitScreen();
-                totalpower.setText("No data...");
+                //totalpower.setText("No data...");
+                Calendar cal = Calendar.getInstance();
+                totalpower.setText("Power produced during " + cal.get(Calendar.YEAR) + " = " + String.format("%.0f",totalvalue) + " kWh");
                 BarselectedY.setText("No date selected...");
                 barselectedvalue.setText("No data...");
                 Barselectedavgvalue.setText("No data...");

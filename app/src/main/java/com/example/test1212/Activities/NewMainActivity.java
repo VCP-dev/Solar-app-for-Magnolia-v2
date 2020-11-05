@@ -592,16 +592,86 @@ public class NewMainActivity extends AppCompatActivity {
             enddate = selectedMonth.get(selectedMonth.size()-1);
         }
 
+
         getMonthlyValues(barChart,NewMainActivity.this,description,startdate,enddate);
+        //getMonthlyValues(barChart,NewMainActivity.this,description,startdate,enddate);
+
+
         //Toast.makeText(getContext(),"Bar graph created, Please tap the display if not visible",Toast.LENGTH_SHORT).show();
     }
 
     public void getMonthlyValues(final BarChart barChart,final Context context, final String description, final String startdate, final String enddate)
     {
         JSONparserclass parser = new JSONparserclass();
+
+
+
+
+        // -----------for start of month------------
+
+        if(startdate==enddate){
+
+            ArrayList<String> daysOfMonth = monthlydetails.GetMonthDates(startdate,enddate);
+
+            StoredValues.energyproducedthismonth=StoredValues.energyproducedtoday;
+            StoredValues.unitsperkwpthismonth=StoredValues.unitsperkwptoday;
+
+            undergraphmonthlyenergyproduced.setText(StoredValues.energyproducedthismonth);
+            undergraphmonthlyunitsperkwp.setText(StoredValues.unitsperkwpthismonth);
+
+            thismonthenergy.setText(StoredValues.energyproducedthismonth);
+            thismonthunitperkwp.setText(StoredValues.unitsperkwpthismonth);
+
+            barEntries = new ArrayList<>();
+
+            barEntries.add(new BarEntry(hourlytotalvalue, 0));
+
+            BarDataSet barDataSet = new BarDataSet(barEntries, "Dates");
+            barDataSet.setDrawValues(true);
+
+            bardatamonthly = new BarData(daysOfMonth, barDataSet);
+
+            BarDataSet currentbarDataSet = new BarDataSet(barEntries, "Dates");
+
+            currentbarDataSet.setHighLightColor(Color.TRANSPARENT);
+            currentbarDataSet.setHighLightAlpha(0);
+            currentbarDataSet.setDrawValues(false);
+
+            BarData barData = new BarData(daysOfMonth, currentbarDataSet);
+            barChart.setData(barData);
+            //barChart.setDescription(descr);
+            barChart.setDescription(null);
+            barChart.fitScreen();
+            barChart.setScaleEnabled(false);
+            barChart.setData(barData);
+            barChart.getLegend().setEnabled(false);
+            barChart.getAxisLeft().setGridColor(Color.parseColor("#ffffff"));
+            barChart.getAxisRight().setGridColor(Color.parseColor("#ffffff"));
+            barChart.getXAxis().setGridColor(Color.parseColor("#ffffff"));
+            barChart.getXAxis().setDrawLabels(false);
+            barChart.getAxisLeft().setDrawLabels(false);
+            barChart.getAxisRight().setDrawLabels(false);
+
+
+            getlifetimevalues(context);
+
+            return;
+
+        }
+
+        // -----------for start of month------------
+
+
+
+
+
+
+
         //Toast.makeText(context,"Making a request for values, please wait",Toast.LENGTH_SHORT).show();
         final Call<WeeklyValues> monthlyValues = SolarApi.getService(context).getValuesofWeek(parser.returnapivalue("system_id",context),startdate,enddate,parser.returnapivalue("apikey",context),parser.returnapivalue("user_id",context));
         final String descr = description;
+
+        //Toast.makeText(context,"startdate:"+startdate+" enddate:"+enddate,Toast.LENGTH_SHORT).show();
 
         monthlyValues.enqueue(new Callback<WeeklyValues>() {
             @Override
@@ -631,7 +701,7 @@ public class NewMainActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    Toast.makeText(context,"Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context,"(Type object is not the same)Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
                     //Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -640,7 +710,7 @@ public class NewMainActivity extends AppCompatActivity {
             @Override
             public void onFailure(Call<WeeklyValues> call, Throwable t) {
                 //Toast.makeText(context,"Error occured, Could not get monthly values",Toast.LENGTH_SHORT).show();
-                Toast.makeText(context,"Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
+                Toast.makeText(context,"(Call was a failure)Could not get monthly values. Please check your internet connection and try again later",Toast.LENGTH_SHORT).show();
             }
         });
 
@@ -684,13 +754,15 @@ public class NewMainActivity extends AppCompatActivity {
                 StoredValues.unitsperkwptoday = todaysavgvaluestring;*/
 
 
-                float yesterdaysvalue = (valuesofweek.get(valuesofweek.size()-1))/1000;                      ////   energy produced yesterday
+
+                /*float yesterdaysvalue = (valuesofweek.get(valuesofweek.size()-1))/1000;                      ////   energy produced yesterday
                 StoredValues.energyproducedyesterday = String.format("%.0f",yesterdaysvalue);
                 float yesterdaysavgvalue = (yesterdaysvalue/49.7f);                                   ////   units per kwp yesterday
                 StoredValues.unitsperkwpyesterday = String.format("%.2f",yesterdaysavgvalue);
 
                 yesterdayenergy.setText(StoredValues.energyproducedyesterday);
-                yesterdayunitperkwp.setText(StoredValues.unitsperkwpyesterday);
+                yesterdayunitperkwp.setText(StoredValues.unitsperkwpyesterday);*/
+
 
 
                 //String thismonthvaluevaluestring = tk + "." + tr;                                              ////   energy produced this month
@@ -1169,6 +1241,25 @@ public class NewMainActivity extends AppCompatActivity {
                 int numberofdayslifetime = Values.size();
 
                 //Toast.makeText(context,""+numberofdayslifetime,Toast.LENGTH_SHORT).show();
+
+
+
+
+
+
+                // ------------------------------ for yesterday ------------------------------
+
+                float yesterdaysvalue = (Values.get(Values.size()-1))/1000;                      ////   energy produced yesterday
+                StoredValues.energyproducedyesterday = String.format("%.0f",yesterdaysvalue);
+                float yesterdaysavgvalue = (yesterdaysvalue/49.7f);                                   ////   units per kwp yesterday
+                StoredValues.unitsperkwpyesterday = String.format("%.2f",yesterdaysavgvalue);
+
+                yesterdayenergy.setText(StoredValues.energyproducedyesterday);
+                yesterdayunitperkwp.setText(StoredValues.unitsperkwpyesterday);
+
+                // ------------------------------ for yesterday ------------------------------
+
+
 
 
 

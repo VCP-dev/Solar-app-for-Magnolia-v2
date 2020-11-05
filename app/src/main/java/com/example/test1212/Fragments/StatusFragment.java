@@ -970,7 +970,8 @@ public class StatusFragment extends Fragment {
 
                     //Toast.makeText(context,"For the year "+year+" startdate:"+startdate+" enddate:"+enddate,Toast.LENGTH_SHORT).show();
 
-                    Toast.makeText(context,"invalid response: "+ new Gson().toJson(response).toString(),Toast.LENGTH_LONG).show();
+                    energyupdatebuttonpressed = false;
+                    Toast.makeText(context,"Could not get yearly value. Please check your internet connection and try again",Toast.LENGTH_SHORT).show();
 
                    /* Dialog dialog = new Dialog(getContext());
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
@@ -989,7 +990,8 @@ public class StatusFragment extends Fragment {
 
             @Override
             public void onFailure(Call<WeeklyValues> call, Throwable t) {
-                Toast.makeText(context,"Error occured, Could not get yearly values",Toast.LENGTH_SHORT).show();
+                energyupdatebuttonpressed = false;
+                Toast.makeText(context,"Could not get yearly values. Please check your internet connection and try again",Toast.LENGTH_SHORT).show();
             }
         });
     }
@@ -1277,13 +1279,14 @@ public class StatusFragment extends Fragment {
                 else
                 {
                     energyupdatebuttonpressed = false;
-                    Dialog dialog = new Dialog(getContext());
+                    Toast.makeText(context,"Could not get monthly value. Please check your internet connection and try again",Toast.LENGTH_SHORT).show();
+                    /*Dialog dialog = new Dialog(getContext());
                     dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
                     dialog.setContentView(R.layout.noresponsedialog_design);
 
                     TextView noresponsetext = dialog.findViewById(R.id.noresponsetext);
                     noresponsetext.setText("Error, the recieved data is not the right type");
-                    dialog.show();
+                    dialog.show();*/
                     return;
                 }
             }
@@ -1291,7 +1294,7 @@ public class StatusFragment extends Fragment {
             @Override
             public void onFailure(Call<WeeklyValues> call, Throwable t) {
                 energyupdatebuttonpressed = false;
-                Snackbar.make(getView(),"Error in receiving values please check internet connection",Snackbar.LENGTH_SHORT).setAction("Action",null).show();
+                Toast.makeText(context,"Could not get monthly value. Please check your internet connection and try again",Toast.LENGTH_SHORT).show();
             }
         });
         //getdata(context);
@@ -1544,7 +1547,8 @@ public class StatusFragment extends Fragment {
 
                 @Override
                 public void onFailure(Call<SummaryOfDay> call, Throwable t) {
-                    Snackbar.make(getView(), "Error in receiving values please check internet connection", Snackbar.LENGTH_SHORT).setAction("Action", null).show();
+                    energyupdatebuttonpressed = false;
+                    Toast.makeText(context,"Could not get today's value. Please check your internet connection and try again",Toast.LENGTH_SHORT).show();
                 }
             });
 

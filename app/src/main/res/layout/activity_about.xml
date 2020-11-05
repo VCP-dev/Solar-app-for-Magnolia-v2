@@ -28,7 +28,7 @@
             android:id="@+id/sysid"
             android:layout_alignParentBottom="true"
             android:textColor="#fff"
-            android:text="V 1.0.6"
+            android:text="V 1.0.7"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 
